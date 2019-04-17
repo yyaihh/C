@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-4-2-3（对英文字母加密2）", "19-4-2-3（对英文字母加密2）\19-4-2-3（对英文字母加密2）.vcxproj", "{03242F52-E68B-4C78-8910-9F259EE57951}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03242F52-E68B-4C78-8910-9F259EE57951}.Debug|x64.ActiveCfg = Debug|x64
+		{03242F52-E68B-4C78-8910-9F259EE57951}.Debug|x64.Build.0 = Debug|x64
+		{03242F52-E68B-4C78-8910-9F259EE57951}.Debug|x86.ActiveCfg = Debug|Win32
+		{03242F52-E68B-4C78-8910-9F259EE57951}.Debug|x86.Build.0 = Debug|Win32
+		{03242F52-E68B-4C78-8910-9F259EE57951}.Release|x64.ActiveCfg = Release|x64
+		{03242F52-E68B-4C78-8910-9F259EE57951}.Release|x64.Build.0 = Release|x64
+		{03242F52-E68B-4C78-8910-9F259EE57951}.Release|x86.ActiveCfg = Release|Win32
+		{03242F52-E68B-4C78-8910-9F259EE57951}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A841EA5B-B73E-4E75-923C-5864B9039AC4}
+	EndGlobalSection
+EndGlobal

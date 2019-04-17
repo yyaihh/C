@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-4-9-1（递归和非递归实现斐波那契数）", "19-4-9-1（递归和非递归实现斐波那契数）\19-4-9-1（递归和非递归实现斐波那契数）.vcxproj", "{10EADD70-EA0B-4B8C-AE4B-80C6FE4CDF2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10EADD70-EA0B-4B8C-AE4B-80C6FE4CDF2A}.Debug|x64.ActiveCfg = Debug|x64
+		{10EADD70-EA0B-4B8C-AE4B-80C6FE4CDF2A}.Debug|x64.Build.0 = Debug|x64
+		{10EADD70-EA0B-4B8C-AE4B-80C6FE4CDF2A}.Debug|x86.ActiveCfg = Debug|Win32
+		{10EADD70-EA0B-4B8C-AE4B-80C6FE4CDF2A}.Debug|x86.Build.0 = Debug|Win32
+		{10EADD70-EA0B-4B8C-AE4B-80C6FE4CDF2A}.Release|x64.ActiveCfg = Release|x64
+		{10EADD70-EA0B-4B8C-AE4B-80C6FE4CDF2A}.Release|x64.Build.0 = Release|x64
+		{10EADD70-EA0B-4B8C-AE4B-80C6FE4CDF2A}.Release|x86.ActiveCfg = Release|Win32
+		{10EADD70-EA0B-4B8C-AE4B-80C6FE4CDF2A}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FFD4A4C-D7DF-4F6A-ADBB-F71207306178}
+	EndGlobalSection
+EndGlobal
