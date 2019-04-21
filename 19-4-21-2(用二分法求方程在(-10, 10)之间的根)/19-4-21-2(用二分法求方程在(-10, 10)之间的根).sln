@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-4-21-2(用二分法求方程在(-10, 10)之间的根)", "19-4-21-2(用二分法求方程在(-10, 10)之间的根).vcxproj", "{4AE83B4D-69AC-4A3C-9840-2513B01CBB16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AE83B4D-69AC-4A3C-9840-2513B01CBB16}.Debug|x64.ActiveCfg = Debug|x64
+		{4AE83B4D-69AC-4A3C-9840-2513B01CBB16}.Debug|x64.Build.0 = Debug|x64
+		{4AE83B4D-69AC-4A3C-9840-2513B01CBB16}.Debug|x86.ActiveCfg = Debug|Win32
+		{4AE83B4D-69AC-4A3C-9840-2513B01CBB16}.Debug|x86.Build.0 = Debug|Win32
+		{4AE83B4D-69AC-4A3C-9840-2513B01CBB16}.Release|x64.ActiveCfg = Release|x64
+		{4AE83B4D-69AC-4A3C-9840-2513B01CBB16}.Release|x64.Build.0 = Release|x64
+		{4AE83B4D-69AC-4A3C-9840-2513B01CBB16}.Release|x86.ActiveCfg = Release|Win32
+		{4AE83B4D-69AC-4A3C-9840-2513B01CBB16}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9454F4EE-AA95-4FF6-8F03-5C76881A9675}
+	EndGlobalSection
+EndGlobal
