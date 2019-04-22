@@ -6,19 +6,17 @@ int binsearch(int a[],int x,int right) {
 	int mid;
 	while (left <= right) {
 		mid = (left + right) / 2;
-		if (x > a[mid]) {
+		if (x == a[mid]) {
+			return mid;
+		}
+		else if (x > a[mid]) {
 			left = mid + 1;
 		}
 		else if (x < a[mid]) {
 			right = mid - 1;
 		}
-		else{
-			return mid;
-		}
 	}
-	if (left > right) {
-		return -1;
-	}
+	return -1;
 }
 void main(){
 	int arr[] = { 1,3,4,5,7,8,11,12,14,15 };
