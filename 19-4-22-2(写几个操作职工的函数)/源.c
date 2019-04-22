@@ -35,7 +35,7 @@ void sort(struct staff* p) {//按职工号从大到小排序
 }
 struct staff* bisearch(int n, struct staff* p) {//查找是否有职工号为n的职工(二分查找)
 	int left = 0;
-	int right = N;
+	int right = N - 1;
 	int mid;
 	struct staff* Mp;
 	while (left <= right) {
