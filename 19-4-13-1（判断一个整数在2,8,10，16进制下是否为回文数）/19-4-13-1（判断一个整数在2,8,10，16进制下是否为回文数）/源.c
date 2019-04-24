@@ -27,7 +27,13 @@ void main() {
 	int num;
 	int n;
 	printf("请输入需要判断的10进制正整数\n");
-	scanf("%d", &num);
+	while (1) {
+		scanf("%d", &num);
+		if (num >= 0) {
+			break;
+		}
+		printf("请输入一个正数\n");
+	}
 	printf("请输入您需判断该数转化为哪种进制判断，请输入(只允许输入2,8,10,16)\n");
 	while (1) {
 		scanf("%d", &n);
