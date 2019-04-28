@@ -3,178 +3,176 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
-int a = 0;
-int b = 0;
-int c = 0;
-void p(int num, int m) {
-	if (m!= 1 && m != 0) {
-		p(num / 2, --m);
-	}
-	printf("%d", num % 2);
-	if (m == 0) {
-		printf("0");
+int a = 0;//x的位数
+int b = 0;//y的位数
+void print(char Y[]) {//输出乘数数组
+	for (int i = 0; i < b + 1; ++i) {
+		if (i == 1) {
+			printf(".");
+		}
+		printf("%c", Y[i]);
 	}
 }
-void print(int num, int m,int XY) {
-	p(XY, 2);
-	printf(".");
-	p(num, m);
+void complement(char x[], int m, int n) {//根据已求得的原码数组求补码码
+	for (int i = n + 1; i < m + 1; ++i) {//取反码
+		if (x[i] == '1') {
+			x[i] = '0';
+		}
+		else {
+			x[i] = '1';
+		}
+	}
+	for (int j = m; j > n; --j) {//取补码
+		if (x[j] == '1') {
+			x[j] = '0';
+			continue;
+		}
+		x[j] = '1';
+		break;
+	}
+}
+void complement1(int num,char x[], int m) {//求被乘数和负的被乘数的补码
+	if (num >= 0) {
+		x[0] = '0';
+		x[1] = '0';
+	}
+	else {
+		x[0] = '1';
+		x[1] = '1';
+		num = -num;
+
+	}
+	x[2] = '.';
+	//求原码
+	for (int i = 2 + m; i > 2; --i) {
+		x[i] = num % 2 + '0';
+		num /= 2;
+	}
+	if (x[0] == '1') {
+		complement(x, m + 2, 2);//求补码
+	}
+	printf("%s\n",x);
+}
+
+void complement2(int num, char x[], int m) {//求乘数补码
+	if (num >= 0) {
+		x[0] = '0';
+	}
+	else {
+		x[0] = '1';
+		num = -num;
+
+	}
+	//求原码
+	for (int i = m; i > 0; --i) {
+		x[i] = num % 2 + '0';
+		num /= 2;
+	}
+	if (x[0] == '1') {
+		complement(x, m, 0);//求补码
+	}
+	print(x);
 	printf("\n");
 }
-int complement(int num, int m) {//用无符号十进制数字的形式表示二进制补码
-	int count = 0;
-	int n, complement = 0;
-	m = 0;
-	if (num < 0) {
-		num = -num;
-		n = num;
-		while (n) {
-			++count;
-			n /= 2;
-		}
-		for (int i = 0; i < count; ++i) {
-			if ((num&(1 << i)) == 0) {
-				complement += (int)pow(2, i);
-			}
-		}
-		complement += 1;//补码
-		n = complement;
-		while (n) {
-			++m;
-			n /= 2;
-		}
-		m = m > count ? m : count;
+void print2(char x[], int m) {//输出结果的原码形式
+	if (x[0] == '1') {
+		complement(x, m, 0);//求补码
+		printf("-");
 	}
-	else {
-		complement = num;
-		n = complement;
-		while (n) {
-			++m;
-			n /= 2;
-		}
+	int i = 3;
+	while (x[i] == '0') {
+		++i;
 	}
-	return complement;
+	for (; i < m + 1; ++i) {
+		printf("%c", x[i]);
+	}
+	printf("\n");
 }
-
+void Add(char Z[],char X[]) {//补码数组相加
+	for (int i = a + 2; i >= 0; --i) {
+		if (i == 2) {
+			continue;
+		}
+		if (Z[i] + X[i] - '0' == '2') {
+			Z[i] = '0';
+			for (int j = i - 1; j >= 0; --j) {
+				if (Z[j] == '0') {
+					Z[j] = '1';
+					break;
+				}
+				else if (Z[j] == '1') {
+					Z[j] = '0';
+				}
+			}
+		}
+		else {
+			Z[i] = Z[i] + X[i] - '0';
+		}
+	}
+}
 void Booth(int x, int y) {//
-	int xb, yb, _xb;
-	int X = 0, Y = 0, _X = 0;
-	if (x < 0) {
-		X = 3;
-	}
-	if(-x < 0) {
-		_X = 3;
-	}
-	if (y < 0) {
-		Y = 3;
-	}
-	xb = complement(x, a);
-	print(xb, a, X);
-	yb = complement(y, b);
-	print(yb, b, Y);
-	_xb = complement(-x, a);
-	print(_xb, a, _X);
-	int xyb = y;
-	int n;
-	int XY = Y;
-	int yb_1 = 0;
-	for (int i = 0; i < 1; ++i) {
-		if (yb % 2 == yb_1) {
+	char X[36] = { '\0' };
+	char Y[34] = { '\0' };
+	char _X[36] = { '\0' };
+	char Z[36] = { '\0' };
+	for (int i = 0; i < a + 3; ++i) {
+		if (i == 2) {
+			Z[i] = '.';
+			continue;
 		}
-		else if (yb % 2 > yb_1) {
-			xyb = xyb + _xb;
-			if (XY + _X > 3) {
-				XY = 0;
-			}
-			else {
-				XY = XY + _X;
-			}
-			c = 0;
-			n = xyb;
-			while (n) {
-				++c;
-				n /= 2;
-			}
+		Z[i] = '0';
+	}
+	printf("%d补码为:", x);
+	complement1(x, X, a);
+	printf("%d补码为:", y);
+	complement2(y, Y, b);
+	printf("%d补码为:", -x);
+	complement1(-x,_X, a);
+	char yb_1 = '0';
+	printf("\n");
+	for (int i = 0; i < b + 1; ++i) {
+		if (Y[b] == yb_1) {
 		}
+		else if (Y[b] < yb_1) {
+			Add(Z, X);
+			printf("                    +X\n%s\n", X);
+		} 
 		else {
-			xyb = xyb + xb;
-			if (XY + X > 3) {
-				XY = 0;
+			Add(Z, _X);
+			printf("                   +_X\n%s\n", _X);
+		}
+		printf("%s  ", Z);
+		print(Y);
+		printf("  %c\n", yb_1);
+		if (i < b) {
+			printf("右移\n");
+			yb_1 = Y[b];
+			for (int i = b; i > 0; --i) {
+				Y[i] = Y[i - 1];
 			}
-			else {
-				XY = XY + X;
+			Y[0] = Z[a + 2];
+			for (int i = a + 2; i > 0; --i) {
+				if (i == 3) {
+					Z[i] = Z[i - 2];
+					continue;
+				}
+				if (i == 2) {
+					continue;
+				}
+				Z[i] = Z[i - 1];
 			}
-			c = 0;
-			n = xyb;
-			while (n) {
-				++c;
-				n /= 2;
-			}
-		}
-		yb_1 = yb % 2;
-		xyb = xyb >> 1;
-		if (XY == 1 || XY == 3) {
-			xyb = xyb + (int)pow(2, c - 1);
-		}
-		if (XY > 1) {
-			XY = 2 + (XY >> 1);
-		}
-		else {
-			XY = XY >> 1;
-		}
-		yb = yb >> 1;
-		if (Y == 1 || Y == 3) {
-			yb = yb + (int)pow(2, b - 1);
-		}
-		if (Y > 1) {
-			Y = 2 + (Y >> 1);
-		}
-		else {
-			Y = Y >> 1;
+			printf("%s  ", Z);
+			print(Y);
+			printf("  %c\n", yb_1);
 		}
 	}
-	
-	if (yb % 2 == yb_1) {
+	char XY[70] = { '\0' };
+	strcpy(XY, Z);
+	for (int i = a + 3; i < a + 3 + b; ++i) {
+		XY[i] = Y[i-a-3];
 	}
-	else if (yb % 2 > yb_1) {
-		xyb = xyb + _xb;
-		if (XY + _X > 3) {
-			XY = 0;
-		}
-		else {
-			XY = XY + _X;
-		}
-		c = 0;
-		n = xyb;
-		while (n) {
-			++c;
-			n /= 2;
-		}
-	}
-	else {
-		xyb = xyb + xb;
-		if (XY + X > 3) {
-			XY = 0;
-		}
-		else {
-			XY = XY + X;
-		}
-		c = 0;
-		n = xyb;
-		while (n) {
-			++c;
-			n /= 2;
-		}
-	}
-
-
-	n = xyb;
-	c = 0;
-	while (n) {
-		++c;
-		n /= 2;
-	}
-	print(xyb, c, XY);
+	printf("x*y的补码为%s\n", XY);
+	print2(XY, a + b + 2);
 }
 void main() {
 	int x, y, n;
