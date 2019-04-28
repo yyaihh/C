@@ -31,7 +31,7 @@ void complement(char x[], int m, int n) {//根据已求得的原码数组求补码码
 		break;
 	}
 }
-void complement1(int num,char x[], int m) {//求被乘数和负的被乘数的补码
+void complement1(int num, char x[], int m) {//求被乘数和负的被乘数的补码
 	if (num >= 0) {
 		x[0] = '0';
 		x[1] = '0';
@@ -51,7 +51,7 @@ void complement1(int num,char x[], int m) {//求被乘数和负的被乘数的补码
 	if (x[0] == '1') {
 		complement(x, m + 2, 2);//求补码
 	}
-	printf("%s\n",x);
+	printf("%s\n", x);
 }
 
 void complement2(int num, char x[], int m) {//求乘数补码
@@ -75,6 +75,7 @@ void complement2(int num, char x[], int m) {//求乘数补码
 	printf("\n");
 }
 void print2(char x[], int m) {//输出结果的原码形式
+	int xy = 0;
 	if (x[0] == '1') {
 		complement(x, m, 0);//求补码
 		printf("-");
@@ -83,12 +84,23 @@ void print2(char x[], int m) {//输出结果的原码形式
 	while (x[i] == '0') {
 		++i;
 	}
-	for (; i < m + 1; ++i) {
-		printf("%c", x[i]);
+	int count = 0;
+	for (int j = i; j < m + 1; ++j) {
+		printf("%c", x[j]);
 	}
 	printf("\n");
+	printf("转换为10进制为:");
+	if (x[0] == '1') {
+		printf("-");
+	}
+	for (int j = i; j < m + 1; ++j) {
+		if (x[j] == '1') {
+			xy += (int)pow(2, m - j);
+		}
+	}
+	printf("%d\n", xy);
 }
-void Add(char Z[],char X[]) {//补码数组相加
+void Add(char Z[], char X[]) {//补码数组相加
 	for (int i = a + 2; i >= 0; --i) {
 		if (i == 2) {
 			continue;
@@ -127,7 +139,7 @@ void Booth(int x, int y) {//
 	printf("%d补码为:", y);
 	complement2(y, Y, b);
 	printf("%d补码为:", -x);
-	complement1(-x,_X, a);
+	complement1(-x, _X, a);
 	char yb_1 = '0';
 	printf("\n");
 	for (int i = 0; i < b + 1; ++i) {
@@ -136,7 +148,7 @@ void Booth(int x, int y) {//
 		else if (Y[b] < yb_1) {
 			Add(Z, X);
 			printf("                    +X\n%s\n", X);
-		} 
+		}
 		else {
 			Add(Z, _X);
 			printf("                   +_X\n%s\n", _X);
@@ -144,7 +156,7 @@ void Booth(int x, int y) {//
 		printf("%s  ", Z);
 		print(Y);
 		printf("  %c\n", yb_1);
-		if (i < b) {
+		if (i < b) {//Y[]与Z[]右移
 			printf("右移\n");
 			yb_1 = Y[b];
 			for (int i = b; i > 0; --i) {
@@ -169,7 +181,7 @@ void Booth(int x, int y) {//
 	char XY[70] = { '\0' };
 	strcpy(XY, Z);
 	for (int i = a + 3; i < a + 3 + b; ++i) {
-		XY[i] = Y[i-a-3];
+		XY[i] = Y[i - a - 3];
 	}
 	printf("x*y的补码为%s\n", XY);
 	print2(XY, a + b + 2);
