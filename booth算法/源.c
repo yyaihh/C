@@ -75,6 +75,7 @@ void complement2(int num, char x[], int m) {//求乘数补码
 	printf("\n");
 }
 void print2(char x[], int m) {//输出结果的原码形式
+	int xy = 0;
 	if (x[0] == '1') {
 		complement(x, m, 0);//求补码
 		printf("-");
@@ -83,10 +84,21 @@ void print2(char x[], int m) {//输出结果的原码形式
 	while (x[i] == '0') {
 		++i;
 	}
-	for (; i < m + 1; ++i) {
-		printf("%c", x[i]);
+	int count = 0;
+	for (int j = i; j < m + 1; ++j) {
+		printf("%c", x[j]);
 	}
 	printf("\n");
+	printf("转换为10进制为:");
+	if (x[0] == '1') {
+		printf("-");
+	}
+	for (int j = i; j < m + 1; ++j) {
+		if (x[j] == '1') {
+			xy += (int)pow(2, m - j);
+		}
+	}
+	printf("%d\n", xy);
 }
 void Add(char Z[], char X[]) {//补码数组相加
 	for (int i = a + 2; i >= 0; --i) {
@@ -144,7 +156,7 @@ void Booth(int x, int y) {//
 		printf("%s  ", Z);
 		print(Y);
 		printf("  %c\n", yb_1);
-		if (i < b) {
+		if (i < b) {//Y[]与Z[]右移
 			printf("右移\n");
 			yb_1 = Y[b];
 			for (int i = b; i > 0; --i) {
