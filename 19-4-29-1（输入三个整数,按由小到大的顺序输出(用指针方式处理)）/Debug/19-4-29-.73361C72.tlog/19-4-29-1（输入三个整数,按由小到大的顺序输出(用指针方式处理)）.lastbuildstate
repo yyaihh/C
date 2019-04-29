@@ -1,0 +1,2 @@
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.17763.0
+Debug|Win32|C:\test\19-4-29-1（输入三个整数,按由小到大的顺序输出(用指针方式处理)）\|
