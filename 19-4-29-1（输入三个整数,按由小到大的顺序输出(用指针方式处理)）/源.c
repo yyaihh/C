@@ -23,6 +23,6 @@ void main() {
 		*cp = *bp^*cp;
 		*bp = *bp^*cp;
 	}
-	printf("%d  %d  %d\n", *ap, *bp, *cp);
+	printf("由小到大为: %d  %d  %d\n", *ap, *bp, *cp);
 	system("pause");
 }
