@@ -113,7 +113,43 @@ void Mul(char X[], char Y[],char _Y[], int x) {//乘法
 	printf("%s\n", Z);
 	print2(Z, 33);
 }
-
+//void Div(char X[], char Y[], char _Y[]) {
+//	int count = 0;
+//	char Z[36];
+//	char S[36];
+//	if (X[0] == '0') {
+//		strcpy(Z, X);
+//		while (1) {
+//			for (int i = 3; i < 34; ++i) {
+//				if (Z[i] > Y[i]) {
+//					break;
+//				}
+//				else if (Z[i] < Y[i]) {
+//					printf("%d\n", count);
+//					return;
+//				}
+//			}
+//			Add(_Y, Z);
+//			++count;
+//		}
+//	}
+//	else {
+//		strcpy(Z, X);
+//		while (1) {
+//			for (int i = 3; i < 34; ++i) {
+//				if (Z[i] > Y[i]) {
+//					break;
+//				}
+//				else if (Z[i] < Y[i]) {
+//					printf("%d\n", count);
+//					return;
+//				}
+//			}
+//			Add(Y, Z);
+//			--count;
+//		}
+//	}
+//}
 void yu(char X[], char Y[]) {
 	char Z[36] = { '\0' };
 	Z[2] = '.';
@@ -170,6 +206,8 @@ void main() {
 	print2(Z, 33);
 	printf("乘法运算: %d * %d =\n", x, y);
 	Mul(X, Y, _Y, x);
+	/*printf("除法运算: %d / %d =\n", x, y);
+	Div(X, Y, _Y);*/
 	printf("与运算: %d & %d =\n", x, y);
 	yu(X, Y);
 	printf("或运算: %d | %d =\n", x, y);
