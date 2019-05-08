@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define N 11//字符数组长度
+#define N 11//
 void fun(char* str[]) {
 	char* temp;
 	for (int i = 0; i < 10; ++i) {
