@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-5-9-4(有十个学生, 每个学生的数据包括学号, 姓名, 3门课程的成绩, 计算三门课程平均分)", "19-5-9-4(有十个学生, 每个学生的数据包括学号, 姓名, 3门课程的成绩, 计算三门课程平均分)\19-5-9-4(有十个学生, 每个学生的数据包括学号, 姓名, 3门课程的成绩, 计算三门课程平均分).vcxproj", "{025CD281-4399-4EB7-822C-19246AB09115}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{025CD281-4399-4EB7-822C-19246AB09115}.Debug|x64.ActiveCfg = Debug|x64
+		{025CD281-4399-4EB7-822C-19246AB09115}.Debug|x64.Build.0 = Debug|x64
+		{025CD281-4399-4EB7-822C-19246AB09115}.Debug|x86.ActiveCfg = Debug|Win32
+		{025CD281-4399-4EB7-822C-19246AB09115}.Debug|x86.Build.0 = Debug|Win32
+		{025CD281-4399-4EB7-822C-19246AB09115}.Release|x64.ActiveCfg = Release|x64
+		{025CD281-4399-4EB7-822C-19246AB09115}.Release|x64.Build.0 = Release|x64
+		{025CD281-4399-4EB7-822C-19246AB09115}.Release|x86.ActiveCfg = Release|Win32
+		{025CD281-4399-4EB7-822C-19246AB09115}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8DBE926-D8DE-42A0-A203-40E45216F713}
+	EndGlobalSection
+EndGlobal

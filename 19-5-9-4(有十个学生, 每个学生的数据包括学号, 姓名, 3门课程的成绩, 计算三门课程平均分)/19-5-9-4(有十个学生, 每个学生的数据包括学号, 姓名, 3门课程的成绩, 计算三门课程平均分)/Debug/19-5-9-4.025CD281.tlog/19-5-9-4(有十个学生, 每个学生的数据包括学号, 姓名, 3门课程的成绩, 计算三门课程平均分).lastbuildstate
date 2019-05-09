@@ -1,0 +1,2 @@
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.17763.0
+Debug|Win32|C:\test\19-5-9-4(有十个学生, 每个学生的数据包括学号, 姓名, 3门课程的成绩, 计算三门课程平均分)\|
