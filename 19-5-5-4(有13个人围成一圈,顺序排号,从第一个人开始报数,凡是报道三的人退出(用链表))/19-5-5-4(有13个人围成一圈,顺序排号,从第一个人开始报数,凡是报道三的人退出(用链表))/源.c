@@ -30,13 +30,14 @@ arr* creat() {//创建链表
 	}
 	return head;
 }
-int fun(arr* head) {
+int fun(arr* head) {//报号为3的人退出
 	arr* p = head;
 	int k = 1;
 	for (p = head; p->next != p; p = p->next) {
 		printf("%d\t", p->num);
 		if (k == 2) {
 			p->next = p->next->next;
+			free(p);
 			k = 1;
 			continue;
 		}
