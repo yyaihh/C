@@ -2,48 +2,53 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define N 13
+#define M sizeof(struct arr)
 struct arr {
 	int num;
 	struct arr* next;
 };
 typedef struct arr arr;
-arr* fun(arr* p) {
+arr* creat() {//创建链表
+	arr* p = NULL;
+	arr* s;
+	arr* head = NULL;
 	for (int i = 0; i < N; ++i) {
-		(p + i)->num = i + 1;
-		printf("%d\t", (p + i)->num);
-	}
-	printf("\n报数:\n");
-	for (int i = 0, k = 1; m > 1; ++i) {
-		if ((p + i)->num != 0) {
-			printf("%d\t", k);
-			k += 1;
-			if (k == 4) {
-				k = 1;
-				*(p + i) = 0;
-				m -= 1;
-			}
+		s = (arr*)malloc(M);
+		s->num = i + 1;
+		printf("%d\t", s->num);
+		if (i == 0) {
+			head = s;
+			p = head;
 		}
-
-		if (i == n - 1) {
-			printf("\n报到3的退出\n");
-			for (int j = 0; j < n; ++j) {
-				if (*(p + j) != 0) {
-					printf("%d\t", *(p + j));
-				}
-			}
-			printf("\n报数:\n");
-			i = -1;
+		s->next = p->next;
+		p->next = s;
+		if (i == N - 1) {
+			p = head;
+			continue;
 		}
+		p = p->next;
 	}
-	for (int i = 0; i < n; ++i) {
-		if (*(p + i) != 0) {
-			printf("\n最后留下的是原来的%d号\n", *(p + i));
+	return head;
+}
+int fun(arr* head) {
+	arr* p = head;
+	int k = 1;
+	for (p = head; p->next != p; p = p->next) {
+		printf("%d\t", p->num);
+		if (k == 2) {
+			p->next = p->next->next;
+			k = 1;
+			continue;
 		}
+		k += 1;
 	}
+	return p->num;
 }
 void main() {
-	arr a;
-	arr* p = &a;
-	fun(p);
+	arr* p;
+	printf("初始号数为\n");
+	p = creat();
+	printf("\n边报数边退出:\n");
+	printf("\n最后剩下的人为最初的%d号\n", fun(p));
 	system("pause");
 }
