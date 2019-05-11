@@ -8,15 +8,12 @@ struct arr {
 typedef struct arr arr;
 arr* creat(int n) {
 	arr* s;
-	arr* p = NULL;
-	arr* head = NULL;
+	arr* p;
+	arr* head = (arr*)malloc(sizeof(arr));//Í·½áµã
+	p = head;
 	for (int i = 0; i < n; ++i) {
 		s = (arr*)malloc(sizeof(arr));
 		s->num = i + 1;
-		if (i == 0) {
-			head = s;
-			p = head;
-		}
 		s->next = p->next;
 		p->next = s;
 		p = p->next;
@@ -27,20 +24,20 @@ arr* creat(int n) {
 	return head;
 }
 void print(arr* head) {
-	for (arr* p = head; p != NULL; p = p->next) {
+	for (arr* p = head->next; p != NULL; p = p->next) {
 		printf("%d\t", p->num);
 	}
 	printf("\n");
 }
 arr* del(arr* head, int m) {
 	arr* p = head;
-	if (m == 1) {
-		return head->next;
-	}
-	for (int i = 0; i < m - 2; ++i) {
+	arr* temp;
+	for (int i = 0; i < m - 1; ++i) {
 		p = p->next;
 	}
-	p->next = p->next->next;
+	temp = p->next;
+	p->next = temp->next;
+	free(temp);
 	return head;
 }
 void main() {
