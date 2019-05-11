@@ -30,14 +30,16 @@ arr* creat() {//创建链表
 	}
 	return head;
 }
-int fun(arr* head) {//报号为3的人退出
+int fun(arr* head) {//报号为3的人退出(删除)
 	arr* p = head;
+	arr* temp;
 	int k = 1;
 	for (p = head; p->next != p; p = p->next) {
 		printf("%d\t", p->num);
 		if (k == 2) {
-			p->next = p->next->next;
-			free(p);
+			temp = p->next;
+			p->next = temp->next;
+			free(temp);
 			k = 1;
 			continue;
 		}
