@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-5-11-2（链表的将建立，删除，插入结为一体）", "19-5-11-2（链表的将建立，删除，插入结为一体）\19-5-11-2（链表的将建立，删除，插入结为一体）.vcxproj", "{B1C5D5AD-C940-4EC0-97C0-71A68B6A6ACA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1C5D5AD-C940-4EC0-97C0-71A68B6A6ACA}.Debug|x64.ActiveCfg = Debug|x64
+		{B1C5D5AD-C940-4EC0-97C0-71A68B6A6ACA}.Debug|x64.Build.0 = Debug|x64
+		{B1C5D5AD-C940-4EC0-97C0-71A68B6A6ACA}.Debug|x86.ActiveCfg = Debug|Win32
+		{B1C5D5AD-C940-4EC0-97C0-71A68B6A6ACA}.Debug|x86.Build.0 = Debug|Win32
+		{B1C5D5AD-C940-4EC0-97C0-71A68B6A6ACA}.Release|x64.ActiveCfg = Release|x64
+		{B1C5D5AD-C940-4EC0-97C0-71A68B6A6ACA}.Release|x64.Build.0 = Release|x64
+		{B1C5D5AD-C940-4EC0-97C0-71A68B6A6ACA}.Release|x86.ActiveCfg = Release|Win32
+		{B1C5D5AD-C940-4EC0-97C0-71A68B6A6ACA}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BB4CE85-7FF8-4CF6-9062-DBB7134D4FEB}
+	EndGlobalSection
+EndGlobal
