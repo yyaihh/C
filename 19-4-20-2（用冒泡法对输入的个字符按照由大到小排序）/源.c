@@ -4,12 +4,13 @@
 #include<string.h>
 #define N 10
 void fun(char str[]) {
-	for (int i = 0; i < (int)strlen(str); ++i) {
-		for (int j = i + 1; j < (int)strlen(str); ++j) {
-			if (str[i] > str[j]) { //从大到小只需换成<号
-				str[i] = str[i] ^ str[j];
-				str[j] = str[i] ^ str[j];
-				str[i] = str[i] ^ str[j];
+	int n = strlen(str);
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < n - 1 - i; ++j) {
+			if (str[j] > str[j + 1]) { //从大到小只需换成<号
+				str[j] = str[j] ^ str[j + 1];
+				str[j + 1] = str[j] ^ str[j + 1];
+				str[j] = str[j] ^ str[j + 1];
 			}
 		}
 	}
@@ -18,7 +19,7 @@ void fun(char str[]) {
 void main() {
 	char str[1024];
 	printf("请输入十个字符\n");
-	fgets(str, N + 1, stdin);
+	fgets(str, N, stdin);
 	fun(str);
 	printf("排序后的字符为:%s\n", str);
 	system("pause");
