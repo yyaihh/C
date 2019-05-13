@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 struct student {
 	int id;
 	char name[1024];
@@ -8,7 +9,7 @@ struct student {
 	struct student* next;
 };
 typedef struct student stu;
-stu* creat(int n) {
+stu* creat(int n) {//创建链表
 	stu* s;
 	stu* head;
 	stu* p;
@@ -35,25 +36,34 @@ stu* creat(int n) {
 	}
 	return head;
 }
-void print(stu* head) {
+void print(stu* head) {//输出
 	for (stu* p = head->next; p != NULL; p = p->next) {
 		printf("%d\t%s\t%d\t%d\t%d\n", p->id, p->name, p->score[0], p->score[1], p->score[2]);
 	}
 }
-
-void fun(stu* a, stu* b) {
+void swap(stu* p, stu* q) {//交换函数
+	p->id = p->id^q->id;
+	q->id = p->id^q->id;
+	p->id = p->id^q->id;
+	char temp[1024];
+	strcpy(temp, p->name);
+	strcpy(p->name, q->name);
+	strcpy(q->name, temp);
+	for (int i = 0; i < 3; ++i) {
+		p->score[i] = p->score[i] ^ q->score[i];
+		q->score[i] = p->score[i] ^ q->score[i];
+		p->score[i] = p->score[i] ^ q->score[i];
+	}
+}
+void fun(stu* a, stu* b) {//合并并排序
 	stu* p;
-	stu* temp1;
-	stu* temp2;
-	//stu* temp2;
 	for (p = a; p->next != NULL; p = p->next);//找到a的最后一个指针
-	p->next = b->next;//让塔指向b
+	p->next = b->next;//让它指向b
 	free(b);
-	print(a);
-	for (stu* p = a->next; p != NULL; p = p->next) { 
-		for (stu* q = p->next; q != NULL; q = q->next) {//lq为q的前驱
+	for (p = a->next; p != NULL; p = p->next) { 
+		for (stu* q = p->next; q != NULL; q = q->next) { //lq为q的前驱
 			if (p->id > q->id) {
-				
+				swap(p, q);
 			}
 		}
 	}
@@ -72,9 +82,8 @@ void main() {
 	print(a);
 	printf("链表b学生信息\n学号\t姓名\t成绩1\t成绩2\t成绩3\n");
 	print(b);
-	printf("合并排序后为\n");
+	printf("合并排序后为\n学号\t姓名\t成绩1\t成绩2\t成绩3\n");
 	fun(a, b);
-	printf("\n\n\n");
 	print(a);
 	system("pause");
 }
