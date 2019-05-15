@@ -4,18 +4,12 @@
 void sort(int a[]) {
 	int tepm;
 	for (int i = 0; i < 10; ++i) {
-		int min = i;
 		for (int j = i + 1; j < 10; ++j) {//a[i]依次和a[i]之后的元素作比较，记录较小的下标
-			if (a[j] < a[min]) {
-				min = j;
+			if (a[j] < a[i]) {
+				tepm = a[i];
+				a[i] = a[j];
+				a[j] = tepm;
 			}
-		}
-		//当min等于i时，说明a[i]就是a[i]之后所有元素中最小的
-		// min不等于i时说明a[i]不是a[i]之后所有元素中最小的，最小的为a[mid]，将他们的值交换
-		if (min != i) {
-			tepm = a[i];
-			a[i] = a[min];
-			a[min] = tepm;
 		}
 	}
 	for (int i = 0; i < 10; ++i) {
