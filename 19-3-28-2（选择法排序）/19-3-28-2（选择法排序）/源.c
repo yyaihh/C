@@ -4,8 +4,8 @@
 void sort(int a[]) {
 	int tepm;
 	for (int i = 0; i < 10; ++i) {
-		for (int j = i + 1; j < 10; ++j) {//a[i]依次和a[i]之后的元素作比较，记录较小的下标
-			if (a[j] < a[i]) {
+		for (int j = i + 1; j < 10; ++j) {//a[i]依次和a[i]之后的元素作比较
+			if (a[i] > a[j]) {//碰见比a[i]小的则与之交换
 				tepm = a[i];
 				a[i] = a[j];
 				a[j] = tepm;
