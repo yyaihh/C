@@ -25,7 +25,6 @@ int main() {
 
 	printf("a\t=%p,解引用为:%d\n", a, **a);
 	printf("a+1\t=%p,解引用为:%d\n\n", a + 1, **(a + 1));
-
 	printf("&a[0]\t=%p\n", &a[0]);
 	printf("&a[0]+1\t=%p\n", &a[0]+1);
 	printf("a[0]\t=%p,解引用为:%d\n", a[0], *a[0]);
@@ -54,18 +53,22 @@ int main() {
 			printf("%d\t", *(*(p + i) + j));//等价printf("%d\t", a[i][j]);
 		}
 	}
-
 	printf("\n");
+	printf("sizeof(int(*)[4])=%d\n", sizeof(int(*)[4]));
+	printf("sizeof(a)=%d\n", sizeof(a));
 	printf("&a\t=%p\n", &a);
 	printf("a\t=%p,解引用为:%d\n", a, **a);
+	printf("sizeof(&a[0])=%d\n", sizeof(&a[0]));
 	printf("&a[0]\t=%p\n", &a[0]);
+	printf("sizeof(a[0])=%d\n", sizeof(a[0]));
 	printf("a[0]\t=%p,解引用为:%d\n", a[0], *a[0]);
+	printf("sizeof(&a[0][0])=%d\n", sizeof(&a[0][0]));
 	printf("&a[0][0]=%p,解引用为:%d\n\n", &a[0][0], a[0][0]);
 	system("pause");
 	return 0;
 }
 #endif
-#if 1
+#if 0
 #include<stdio.h>
 #include<stdlib.h>
 int main() {
@@ -102,6 +105,27 @@ int main() {
 		printf("%d\t", **(q + i));//等价于printf("%d\t", *q[i]);
 	}
 	printf("\n");
+	system("pause");
+	return 0;
+}
+#endif
+#if 1
+#include<stdio.h>
+#include<stdlib.h>
+int main() {
+	int a[3][4] = { 1,2,3,4,5,6,7,8,9,10,11,12 };
+	printf("%d\n", sizeof(a));
+	printf("%d\n", sizeof(*a + 1));
+	printf("%d\n", sizeof(*(a + 1)));
+	printf("%d\n", sizeof(*(a + 1) + 1));
+	printf("%d\n", sizeof(a[0][0]));
+	printf("%d\n", sizeof(a[0]));
+	printf("%d\n", sizeof(a[0] + 1));
+	printf("%d\n", sizeof((a[0] + 1)));
+	printf("%d\n", sizeof(a + 1)); 
+	printf("%d\n", sizeof(&a[0] + 1));
+	printf("%d\n", sizeof((&a[0] + 1)));
+	printf("%d\n", sizeof(a[3]));
 	system("pause");
 	return 0;
 }
