@@ -38,15 +38,8 @@ struct staff* bisearch(char* str, struct staff* p) {
 	int n;
 	for (int i = 1; p < q + N; ++i, ++p) {
 		n = strlen(p->name);
-		if (n == strlen(str)) {
-			for (int j = 0; j < n; ++j) {
-				if (str[j] != p->name[j]) {
-					break;
-				}
-				if (j == n - 1) {
-					return p;
-				}
-			}
+		if (n == strlen(str) && strcmp(p->name,str) == 0) {
+			return p;
 		}
 	}
 	return NULL;
