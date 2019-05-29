@@ -3,12 +3,12 @@
 #include<string.h>
 char* Strncat(char* str1, const char* str2, int size) {
 	int n = strlen(str1);
-	for (int i = 0; ; ++i) {
-		if (i == size || *(str2 + i) == '\0') {
-			*(str1 + n + i) = '\0';
+	int i = 0;
+	while (*(str1++ + n + i) = *(str2++ + i)) {
+		if (i == size) {
+			*(str1 + n + i) = 0;
 			break;
 		}
-		*(str1 + n + i) = *(str2 + i);
 	}
 	return str1;
 }
