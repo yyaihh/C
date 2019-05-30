@@ -1,9 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 char* Strcpy(char* str2, const char* str1) {//可能会越界
-	for (int i = 0; *(str2 + i) != '\0'; ++i) {
-		*(str2 + i) = *(str1 + i);
-	}
+	while (*(str2++) = *(str1++));
 	return str2;
 }
 void main() {
