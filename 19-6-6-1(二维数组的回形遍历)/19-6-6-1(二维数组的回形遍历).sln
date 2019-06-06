@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-6-6-1(二维数组的回形遍历)", "19-6-6-1(二维数组的回形遍历)\19-6-6-1(二维数组的回形遍历).vcxproj", "{04832132-190B-41CA-A614-E681CA030DA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04832132-190B-41CA-A614-E681CA030DA0}.Debug|x64.ActiveCfg = Debug|x64
+		{04832132-190B-41CA-A614-E681CA030DA0}.Debug|x64.Build.0 = Debug|x64
+		{04832132-190B-41CA-A614-E681CA030DA0}.Debug|x86.ActiveCfg = Debug|Win32
+		{04832132-190B-41CA-A614-E681CA030DA0}.Debug|x86.Build.0 = Debug|Win32
+		{04832132-190B-41CA-A614-E681CA030DA0}.Release|x64.ActiveCfg = Release|x64
+		{04832132-190B-41CA-A614-E681CA030DA0}.Release|x64.Build.0 = Release|x64
+		{04832132-190B-41CA-A614-E681CA030DA0}.Release|x86.ActiveCfg = Release|Win32
+		{04832132-190B-41CA-A614-E681CA030DA0}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF51ED4D-9FE5-4700-9FC0-41B3E6AD3302}
+	EndGlobalSection
+EndGlobal
