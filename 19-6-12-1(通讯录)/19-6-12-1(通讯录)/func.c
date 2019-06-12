@@ -1,4 +1,4 @@
-#pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include"AddressList.h"
 int Menu() {//菜单
 	int choic;
@@ -320,7 +320,6 @@ void AddressList() {
 				del(find[choic_2]);
 				free(find);
 				find = NULL;
-				printf("删除成功!\n");
 			}
 			system("pause");
 			system("cls");
@@ -340,7 +339,6 @@ void AddressList() {
 				alter(find[choic_2]);
 				free(find);
 				find = NULL;
-				printf("修改成功!\n");
 			}
 			system("pause");
 			system("cls");
