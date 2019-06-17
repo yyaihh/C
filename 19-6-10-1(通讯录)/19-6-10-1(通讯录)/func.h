@@ -212,25 +212,44 @@ int save(AL* head) {
 	if (head->next == NULL) {
 		return -1;
 	}
-	printf("1.覆盖 2.并入\n请输入选择\n");
-	n = scanf("%d", &choic);
-	while (n != 1 || choic < 1 || choic > 2) {
-		printf("您的输入有误,请重新输入\n");
-		while (getchar() != '\n');
-		n = scanf("%d", &choic);
-	}
-	if (choic == 1) {
-		if ((fp = fopen("AL.txt", "w+")) == NULL) {//fopen(文件名,使用方式),此处w为write,只写.
+	if ((fp = fopen("AL.txt", "r+")) == NULL) {//fopen(文件名,使用方式),此处w为write,只写.
 		//应返回指向这个文件的指针,文件不存在则建立新文件,既不存在又创建新文件失败则返回NULL
+		return 0;//
+	}
+	getc(fp);
+	if (feof(fp)) {
+		printf("文件为空,直接保存!\n");
+		fclose(fp);
+		fp = NULL;
+		if ((fp = fopen("AL.txt", "w+")) == NULL) {//fopen(文件名,使用方式),此处w为write,只写.
+			//应返回指向这个文件的指针,文件不存在则建立新文件,既不存在又创建新文件失败则返回NULL
 			return 0;//
 		}
 	}
 	else {
-		if ((fp = fopen("AL.txt", "a+")) == NULL) {
-			return 0;
+		fclose(fp);
+		fp = NULL;
+		printf("1.覆盖 2.并入\n请输入选择\n");
+		n = scanf("%d", &choic);
+		while (n != 1 || choic < 1 || choic > 2) {
+			printf("您的输入有误,请重新输入\n");
+			while (getchar() != '\n');
+			n = scanf("%d", &choic);
+		}
+		if (choic == 1) {
+			if ((fp = fopen("AL.txt", "w+")) == NULL) {//fopen(文件名,使用方式),此处w为write,只写.
+			//应返回指向这个文件的指针,文件不存在则建立新文件,既不存在又创建新文件失败则返回NULL
+				return 0;//
+			}
+		}
+		else {
+			if ((fp = fopen("AL.txt", "a+")) == NULL) {
+				return 0;
+			}
 		}
 	}
 	for (AL* p = head->next; p != NULL; p = p->next) {
+		#if 0
 		fputs(p->name, fp);
 		fputc(' ', fp);
 		fputc(p->sex, fp);
@@ -242,6 +261,14 @@ int save(AL* head) {
 		fputc(' ', fp);
 		fputs(p->Tel, fp);
 		fputc('\n', fp);
+		#endif
+		#if 1
+		fprintf(fp, "%s ", p->name);
+		fprintf(fp, "%c ", p->sex);
+		fprintf(fp, "%d ", p->age);
+		fprintf(fp, "%s ", p->Add);
+		fprintf(fp, "%s\n", p->Tel);
+		#endif
 	}
 	fclose(fp);//关闭
 	return 1;
