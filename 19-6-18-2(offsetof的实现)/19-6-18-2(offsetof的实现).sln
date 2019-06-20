@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-6-18-2(offsetof的实现)", "19-6-18-2(offsetof的实现)\19-6-18-2(offsetof的实现).vcxproj", "{20BFB994-4AC5-431A-AAE7-37E51D8EC59C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20BFB994-4AC5-431A-AAE7-37E51D8EC59C}.Debug|x64.ActiveCfg = Debug|x64
+		{20BFB994-4AC5-431A-AAE7-37E51D8EC59C}.Debug|x64.Build.0 = Debug|x64
+		{20BFB994-4AC5-431A-AAE7-37E51D8EC59C}.Debug|x86.ActiveCfg = Debug|Win32
+		{20BFB994-4AC5-431A-AAE7-37E51D8EC59C}.Debug|x86.Build.0 = Debug|Win32
+		{20BFB994-4AC5-431A-AAE7-37E51D8EC59C}.Release|x64.ActiveCfg = Release|x64
+		{20BFB994-4AC5-431A-AAE7-37E51D8EC59C}.Release|x64.Build.0 = Release|x64
+		{20BFB994-4AC5-431A-AAE7-37E51D8EC59C}.Release|x86.ActiveCfg = Release|Win32
+		{20BFB994-4AC5-431A-AAE7-37E51D8EC59C}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {539C8ACB-0182-4A9B-A60F-57681F2F8FD2}
+	EndGlobalSection
+EndGlobal
