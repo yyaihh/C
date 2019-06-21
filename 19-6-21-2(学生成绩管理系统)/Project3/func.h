@@ -142,7 +142,9 @@ void Student::student() {
 			system("cls");
 			break;
 		case ≤È’“:
-			find = allfind(head);
+			if ((find = allfind(head)) == NULL) {
+				cout << "Œ¥’“µΩ!\n";
+			}
 			//free(find);
 			delete[]find;
 			find = NULL;
