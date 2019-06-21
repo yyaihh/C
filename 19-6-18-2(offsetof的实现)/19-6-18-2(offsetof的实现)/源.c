@@ -2,8 +2,7 @@
 #include<stdlib.h>
 #define Offsetof(s,m) ((size_t)&(((s*)0)->m))
 typedef struct {
-	double a;
-	char str[10];
+	char a;
 	int b;
 	char c;
 }S;
