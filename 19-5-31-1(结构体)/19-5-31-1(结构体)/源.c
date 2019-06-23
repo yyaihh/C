@@ -1,6 +1,6 @@
+#if 0
 #include<stdio.h>
 #include<stdlib.h>
-#include<stddef.h>
 typedef struct s1 {//12
 	char a;//0,1+3
 	//char a1;char a2;char a3;
@@ -116,3 +116,53 @@ int main() {
 	system("pause");
 	return 0;
 }
+#endif
+
+#if 0
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct s1 {
+	char a;
+	int b; 
+	char c;
+}s1;
+int main() {
+	printf("%d\n", sizeof(s1));
+	system("pause");
+	return 0;
+}
+#endif
+
+//printf("%d\n", offsetof(s1, a));
+//printf("%d\n", offsetof(s1, b));
+//printf("%d\n", offsetof(s1, c));
+
+
+#if 1
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct S{
+	//Windows系统VS编译器
+	int a : 2;//int型占4字节32位,只分配2位
+	int b : 10;//int型占4字节32位,只分配10位
+	//a和b一起对齐到4字节32位
+	int c : 30;//int型占4字节32位,只分配30位
+	//c对齐到4字节32位
+	char d : 5;//char型占1字节8位,只分配4位
+	short e : 9;//short型占2字节16位,只分配9位
+	//d和e一起对齐到4字节32位
+	//32 + 32 + 32 = 96位(12字节)
+}S;
+
+int main() {
+	S w = { 0 };
+	w.a = 1;
+	w.b = 2;
+	w.c = 3;
+	w.d = 4;
+	w.e = 5;
+	printf("%d字节%dbit位\n", sizeof(w), sizeof(w) * 8);
+	system("pause");
+	return 0;
+}
+#endif
