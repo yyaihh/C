@@ -27,15 +27,22 @@ int main() {
 #if 1
 int main() {
 	SList test;
+	SList test1;
 	SListInit(&test);
 	for (int i = 10; i > 0; --i) {
+		SListPushFront(&test, i);
+	}
+	SListInit(&test1);
+	for (int i = 0; i < 10; ++i) {
 		SListPushFront(&test, i);
 	}
 	SListPopFront(&test);
 	SListInsertAfter(SListFind(&test, 5), 100);
 	SListRemove(&test, 3);
 	SListPrint(&test);
-	printf("\n%d\n", SListFind(&test, 8)->_data);
+	SListfun(&test);
+	SListPrint(&test);
+	//printf("\n%d\n", SListFind(&test, 8)->_data);
 	//printf("\n%d\n", SListFind(&test, 12)->_data);
 	SListDestory(&test);
 	system("pause");

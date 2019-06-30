@@ -21,4 +21,4 @@ void SListInsertAfter(SListNode* pos, SLTDataType x);// 在pos的后面进行插入
 void SListEraseAfter(SListNode* pos);//删除pos后面的结点
 void SListRemove(SList* plist, SLTDataType x);
 void SListPrint(SList* plist);
-void TestSList();
+void SListfun(SList* plist);
