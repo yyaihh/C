@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-7-3(上课)", "19-7-3(上课)\19-7-3(上课).vcxproj", "{F4DA1DEE-E4D9-4E5B-8876-56EC02D3D763}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4DA1DEE-E4D9-4E5B-8876-56EC02D3D763}.Debug|x64.ActiveCfg = Debug|x64
+		{F4DA1DEE-E4D9-4E5B-8876-56EC02D3D763}.Debug|x64.Build.0 = Debug|x64
+		{F4DA1DEE-E4D9-4E5B-8876-56EC02D3D763}.Debug|x86.ActiveCfg = Debug|Win32
+		{F4DA1DEE-E4D9-4E5B-8876-56EC02D3D763}.Debug|x86.Build.0 = Debug|Win32
+		{F4DA1DEE-E4D9-4E5B-8876-56EC02D3D763}.Release|x64.ActiveCfg = Release|x64
+		{F4DA1DEE-E4D9-4E5B-8876-56EC02D3D763}.Release|x64.Build.0 = Release|x64
+		{F4DA1DEE-E4D9-4E5B-8876-56EC02D3D763}.Release|x86.ActiveCfg = Release|Win32
+		{F4DA1DEE-E4D9-4E5B-8876-56EC02D3D763}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F4391442-0045-4B44-86A1-F720C3462278}
+	EndGlobalSection
+EndGlobal
