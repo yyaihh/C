@@ -68,7 +68,7 @@ void SListRemove(SList* plist, SLTDataType x) {
 		}
 	}
 }
-void SListfun(SList* plist) {
+void SListfun(SList* plist) {//逆序
 	assert(plist);
 	SListNode* tmp1;
 	SListNode* tmp2;
@@ -83,7 +83,7 @@ void SListfun(SList* plist) {
 		head = p;
 
 	}*/
-
+	//方法1
 	/*SListNode* tmp;
 	SListNode* cur = plist->_head;
 	for (;tmp = cur->_next;) {
@@ -91,7 +91,7 @@ void SListfun(SList* plist) {
 		tmp->_next = plist->_head;
 		plist->_head = tmp;
 	}*/
-
+	//方法2
 	SListNode* tmp = NULL;
 	SListNode* head = NULL;
 	while(tmp = plist->_head) {
@@ -103,12 +103,12 @@ void SListfun(SList* plist) {
 
 
 }
-SListNode *detectCycle(SList* plist) {
+SListNode *detectCycle(SList* plist) {//求环交点
 	SListNode* tmp = NULL;
 	if (plist->_head == NULL || plist->_head->_next == NULL) {
 		return NULL;
 	}
-	for (SListNode* p = plist->_head->_next, *q = head->_next->_next; p&&q; p = p->_next) {
+	for (SListNode* p = plist->_head->_next, *q = plist->_head->_next->_next; p&&q; p = p->_next) {
 		if (p == q) {
 			tmp = p;
 			break;
@@ -128,7 +128,7 @@ SListNode *detectCycle(SList* plist) {
 	}
 	return NULL;
 }
-SListNode *getIntersectionNode(SList* plistA, SList* plistB) {
+SListNode *getIntersectionNode(SList* plistA, SList* plistB) {//求交点
 	int i = 0;
 	int j = 0;
 	SListNode* tmp;
@@ -140,7 +140,7 @@ SListNode *getIntersectionNode(SList* plistA, SList* plistB) {
 	else if (j > i) {
 		for (j = j - i; j; plistB->_head = plistB->_head->_next, --j);
 	}
-	for (; plistA->_head; plistA->_head = plistA->_head->_next, plistB->_head = plistB->_head->next) {
+	for (; plistA->_head; plistA->_head = plistA->_head->_next, plistB->_head = plistB->_head->_next) {
 		if (plistA->_head == plistB->_head) {
 			return plistA->_head;
 		}
