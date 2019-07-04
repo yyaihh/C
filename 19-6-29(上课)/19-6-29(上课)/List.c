@@ -47,9 +47,15 @@ void ListPopFront(List* plist) {//头删, 对head后面的
 }
 ListNode* ListFind(List* plist, LTDataType x);
 // 在pos的前面进行插入
-void ListInsert(ListNode* pos, LTDataType x);
-// 删除pos位置的节点
-void ListErase(ListNode* pos);
+void ListInsert(ListNode* pos, LTDataType x) {//
+	
+}
+void ListErase(ListNode* pos) {// 删除pos位置的节点
+	assert(pos);
+	pos->_prev->_next = pos->_next;
+	pos->_next->_prev = pos->_prev;
+	free(pos);
+}
 void ListRemove(List* plist, LTDataType x);
 void ListPrint(List* plist) {
 	printf("head");
