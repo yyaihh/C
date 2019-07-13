@@ -1,6 +1,6 @@
 #include"seqList.h"
 #include"alist.h"
-#if 0
+#if 1
 int main() {
 	SeqList test;
 	SeqListInit(&test, 15);
@@ -24,7 +24,7 @@ int main() {
 }
 #endif
 
-#if 1
+#if 0
 int main() {
 	SList test;
 	SList test1;

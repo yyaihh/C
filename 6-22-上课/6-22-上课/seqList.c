@@ -17,7 +17,7 @@ void CheckCapacity(SeqList* psl) {//
 	assert(psl);
 	if (psl->size == psl->capicity) {
 		psl->capicity *= 2;
-		psl = realloc(psl->array, psl->capicity * sizeof(SLDataType));
+		psl->array = (SLDataType*)realloc(psl->array, psl->capicity * sizeof(SLDataType));
 	}
 }
 void SeqListPushBack(SeqList* psl, SLDataType x) {//Î²²å
