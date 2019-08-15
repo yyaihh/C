@@ -29,6 +29,7 @@ void SeqListPopBack(SeqList* psl) {//Î²É¾
 }
 void SeqListPushFront(SeqList* psl, SLDataType x) {//Í·²å
 	assert(psl);
+	CheckCapacity(psl);
 	for (int i = psl->size; i > 0; --i) {
 		psl->array[i] = psl->array[i - 1];
 	}
