@@ -83,7 +83,7 @@ void SListfun(SList* plist) {//逆序
 		head = p;
 
 	}*/
-	//方法1
+	//方法1 删尾头插
 	/*SListNode* tmp;
 	SListNode* cur = plist->_head;
 	for (;tmp = cur->_next;) {
@@ -91,7 +91,7 @@ void SListfun(SList* plist) {//逆序
 		tmp->_next = plist->_head;
 		plist->_head = tmp;
 	}*/
-	//方法2
+	//方法2 //向后转法
 	SListNode* tmp = NULL;
 	SListNode* head = NULL;
 	while(tmp = plist->_head) {
