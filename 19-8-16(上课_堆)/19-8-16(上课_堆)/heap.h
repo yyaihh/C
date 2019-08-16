@@ -4,8 +4,8 @@
 typedef int HPDataType;
 typedef struct Heap {
 	HPDataType* data;
-	size_t size;
-	size_t capicity;
+	int size;
+	int capicity;
 }Heap;
 void adjustDown(Heap* hp, int n);//向下调整算法
 void HeapInit(Heap* hp, HPDataType* a, int n);

@@ -27,7 +27,7 @@ void adjustDown(Heap* hp, int n) {//向下调整算法, n:下标(从哪个节点开始向下执行)
 void HeapInit(Heap* hp, HPDataType* a, int n) {
 	hp->capicity = 2 * n;
 	hp->size = n;//初始化了长度为n的数组
-	hp->data = (HPDataType*)calloc(hp->capicity, sizeof(Heap));
+	hp->data = (HPDataType*)calloc(hp->capicity, sizeof(HPDataType));
 	for (int i = 0; i < n; ++i) {
 		hp->data[i] = a[i];
 	}
@@ -48,7 +48,7 @@ void HeapPush(Heap* hp, HPDataType x) {
 	int tmp;
 	if (hp->size == hp->capicity) {
 		hp->capicity *= 2;
-		hp->data = (HPDataType*)realloc(hp->data, hp->capicity * sizeof(Heap));
+		hp->data = (HPDataType*)realloc(hp->data, hp->capicity * sizeof(HPDataType));
 	}
 	int cur = hp->size;
 	hp->data[hp->size] = x;
@@ -77,9 +77,9 @@ void HeapPop(Heap* hp) {
 }
 HPDataType HeapTop(Heap* hp) {//返回堆顶
 	if (hp->size == 0) {
-		return (HPDataType*)0;
+		return (HPDataType)0;
 	}
-	return hp->data;
+	return hp->data[0];
 
 }
 int HeapSize(Heap* hp) {//返回堆的大小
@@ -89,7 +89,7 @@ int HeapEmpty(Heap* hp){
 	return hp->size != 0;
 }
 void HeapPrint(Heap* hp) {
-		for (int j = 0,i; j < hp->size ; ++j) {
+		for (int j = 0; j < hp->size ; ++j) {
 			printf("%d ", hp->data[j]);
 		}
 		putchar('\n');
