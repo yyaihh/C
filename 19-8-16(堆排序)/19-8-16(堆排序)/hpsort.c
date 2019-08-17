@@ -1,5 +1,4 @@
 #include"hpsort.h"
-
 void adjustDown(HPDataType* array, int n, int size) {
 	int cur = n;
 	int tmp;
@@ -36,11 +35,12 @@ void HeapPop(HPDataType* array,int* size) {
 	adjustDown(array, 0,*size);
 }
 void HeapSort(HPDataType* array, int size) {
-	for (int i = size / 2 - 1; i >= 0; --i) {
+	for (int i = size / 2 - 1; i >= 0; --i) {//将数组变成堆
 		adjustDown(array, i, size);
 	}
+
 	int tmp = size;
-	while (size > 1) {
+	while (size > 1) {//排序
 		HeapPop(array,&size);
 	}
 	size = tmp;
