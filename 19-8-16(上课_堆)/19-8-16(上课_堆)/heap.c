@@ -19,7 +19,7 @@ void adjustDown(Heap* hp, int n) {//向下调整算法, n:下标(从哪个节点开始向下执行)
 			hp->data[n] = tmp;
 			cur = n;
 		}
-		else {
+		else {//出现根节点的值比刚刚逼出来的要小(大),再不用比了,跳出
 			break;
 		}
 	}
@@ -50,15 +50,15 @@ void HeapPush(Heap* hp, HPDataType x) {
 		hp->capicity *= 2;
 		hp->data = (HPDataType*)realloc(hp->data, hp->capicity * sizeof(HPDataType));
 	}
-	int cur = hp->size;
+	int cur = hp->size;//下标
 	hp->data[hp->size] = x;
 	hp->size++;
-	while (cur>0) {
-		if (hp->data[cur] > hp->data[(cur - 1) / 2]) {
+	while (cur > 0) { 
+		if (hp->data[cur] > hp->data[(cur - 1) / 2]) {//(cur - 1) / 2 为父亲节点,大于父亲节点则交换,否则则符合跳出
 			tmp = hp->data[cur];
 			hp->data[cur] = hp->data[(cur - 1) / 2];
 			hp->data[(cur - 1) / 2] = tmp;
-			cur = (cur - 1) / 2;
+			cur = (cur - 1) / 2;//下标变化
 		}
 		else {
 			break;
@@ -66,6 +66,8 @@ void HeapPush(Heap* hp, HPDataType x) {
 	}
 }
 void HeapPop(Heap* hp) {
+	//堆的删除就是删除堆顶的元素,将堆顶的数据与最后一个要删除的交换
+	//然后删除最后一个数据, 再从根向下调整算法
 	if (hp->size == 0) {
 		return;
 	}
