@@ -25,9 +25,9 @@ void adjustDown(HPDataType* array, int n, int size) {
 	}
 }
 void HeapPop(HPDataType* array, int* size) {
-	if (size == 0) {
+	/*if (size == 0) {
 		return;
-	}
+	}*/
 	--*size;
 	int tmp = array[0];
 	array[0] = array[*size];
@@ -39,7 +39,6 @@ int HeapSort(HPDataType* array, int size,int n) {
 		adjustDown(array, i, size);
 	}
 
-	int tmp = size;
 	while (n--) {//≈≈–Ú
 		HeapPop(array, &size);
 	}

@@ -1,7 +1,7 @@
 #include"hpsort.h"
-#define M 4
+#define M 2
 int main() {
-	int a[10] = { 3,56,23,45,3,67,32,78,45,-1 };
+	int a[10] = { 29,72,48,53,45,30,18,36,15,35};
 	int n = sizeof(a) / 4;
 	printf("≈≈–Ú«∞\n");
 	for (int i = 0; i < n; ++i) {
@@ -9,6 +9,9 @@ int main() {
 	}
 	if (M <= n) {
 		printf("\n%d\n", HeapSort(a, n, M));
+	}
+	for (int i = 0; i < n; ++i) {
+		printf("%d ", a[i]);
 	}
 	system("pause");
 	return 0;
