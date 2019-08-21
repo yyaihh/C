@@ -113,7 +113,6 @@ int SeqListBinaryFind(SeqList* psl, SLDataType x) {//二分查找
 	}
 	return -1;
 }
-// 本题要求：时间复杂度：O(N) 空间复杂度 O(1)
 void SeqListRemoveAll(SeqList* psl, SLDataType x) {//在先排序的基础上,将x去重
 	for (int i = 0; i < (int)psl->size; ) {
 		if (psl->array[i] == x) {
