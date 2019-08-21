@@ -45,10 +45,23 @@ void ListPopFront(List* plist) {//头删, 对head后面的
 		free(tmp);
 	}
 }
-ListNode* ListFind(List* plist, LTDataType x);
-// 在pos的前面进行插入
-void ListInsert(ListNode* pos, LTDataType x) {//
-	
+ListNode* ListFind(List* plist, LTDataType x) {
+	for (ListNode* p = plist->_head->_next; p != plist->_head; p = p->_next) {
+		if (p->_data == x) {
+			return p;
+		}
+	}
+	return NULL;
+}
+
+void ListInsert(ListNode* pos, LTDataType x) {// 在pos的前面进行插入
+	assert(pos);
+	ListNode* cur = (ListNode*)malloc(sizeof(ListNode));
+	cur->_data = x;
+	pos->_prev->_next = cur;
+	cur->_prev = pos->_prev;
+	cur->_next = pos;
+	pos->_prev = cur;
 }
 void ListErase(ListNode* pos) {// 删除pos位置的节点
 	assert(pos);
@@ -56,7 +69,9 @@ void ListErase(ListNode* pos) {// 删除pos位置的节点
 	pos->_next->_prev = pos->_prev;
 	free(pos);
 }
-void ListRemove(List* plist, LTDataType x);
+void ListRemove(List* plist, LTDataType x) {
+	ListErase(ListFind(plist, x));
+}
 void ListPrint(List* plist) {
 	printf("head");
 	for (ListNode* p = plist->_head->_next; p != plist->_head; p = p->_next) {
