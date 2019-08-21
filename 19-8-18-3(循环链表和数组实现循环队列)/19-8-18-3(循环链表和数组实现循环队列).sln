@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19-8-18-3(循环链表和数组实现循环队列)", "19-8-18-3(循环链表和数组实现循环队列)\19-8-18-3(循环链表和数组实现循环队列).vcxproj", "{3DDE733F-985A-437E-990B-CA0162F91434}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DDE733F-985A-437E-990B-CA0162F91434}.Debug|x64.ActiveCfg = Debug|x64
+		{3DDE733F-985A-437E-990B-CA0162F91434}.Debug|x64.Build.0 = Debug|x64
+		{3DDE733F-985A-437E-990B-CA0162F91434}.Debug|x86.ActiveCfg = Debug|Win32
+		{3DDE733F-985A-437E-990B-CA0162F91434}.Debug|x86.Build.0 = Debug|Win32
+		{3DDE733F-985A-437E-990B-CA0162F91434}.Release|x64.ActiveCfg = Release|x64
+		{3DDE733F-985A-437E-990B-CA0162F91434}.Release|x64.Build.0 = Release|x64
+		{3DDE733F-985A-437E-990B-CA0162F91434}.Release|x86.ActiveCfg = Release|Win32
+		{3DDE733F-985A-437E-990B-CA0162F91434}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FFE8EF4-9128-4689-94E6-D6648C87603A}
+	EndGlobalSection
+EndGlobal
