@@ -156,19 +156,46 @@ int BinaryTreeLevelKSize(BTNode* root, int k) {//K层结点
 }
 BTNode* BinaryTreeFind(BTNode* root, BTDataType x) {//查找
 //遍历
-#if 1//递归
-	BTNode* cur = root;
+#if 0//递归
+	BTNode* cur = NULL;
 	if (root) {
 		if (root->_data == x) {
-			return root;
+			cur = root;
+			return cur;
+			root = NULL;
 		}
-
-		putchar(cur->_data);
-		BinaryTreeFind(root->lchild, x);
-		BinaryTreeFind(root->rchild, x);
+		if (root->lchild) {
+			root = root->lchild;
+		}
+		else if (root->rchild) {
+			root = root->rchild;
+		}
+		else {
+			return NULL;
+		}
 	}
+	return BinaryTreeFind(root, x);
 #else //非递归
-
+	Stack st;
+	BTNode* cur = root;
+	StackInit(&st, 20);
+	while (cur) {//左孩子为空和栈为空时cur为空,跳出
+		if (cur->_data == x) {
+			return cur;
+		}
+		if (cur->rchild) { //有右,右入栈
+			StackPush(&st, cur->rchild);
+		}
+		if (cur->lchild) {//有左,访问
+			cur = cur->lchild;
+		}
+		else {//没左,取栈顶
+			cur = StackTop(&st);
+			StackPop(&st);
+		}
+	}
+	StackDestory(&st);
+	return NULL;
 #endif
 }
 // 遍历
@@ -222,15 +249,15 @@ void BinaryTreePrevOrderNonR(BTNode* root) {
 	Stack st;
 	BTNode* cur = root;
 	StackInit(&st, 20);
-	while (cur) {//左孩子为空和栈为空时cur为空
+	while (cur) {//左孩子为空和栈为空时cur为空,跳出
 		putchar(cur->_data);
-		if (cur->rchild) { 
+		if (cur->rchild) { //有右,右入栈
 			StackPush(&st, cur->rchild);
 		}
-		if (cur->lchild) {
+		if (cur->lchild) {//有左,访问
 			cur = cur->lchild;
 		}
-		else {
+		else {//没左,取栈顶
 			cur = StackTop(&st);
 			StackPop(&st);
 		}
@@ -244,19 +271,19 @@ void BinaryTreeInOrderNonR(BTNode* root) {
 	Stack st;
 	BTNode* cur = root;
 	StackInit(&st, 20);
-	while (1) {
+	while (cur || !StackEmpty(&st)) {
 		
 		for (; cur; cur = cur->lchild) {
 			StackPush(&st, cur);
 		}
 
 		cur = StackTop(&st);
-		if (cur == NULL) {//取栈顶时发现已空
-			break;
-		}
+		//1.如果右孩子为空,for循环不进,直接取栈顶
+		//2.如果右孩子不为空,那么这是一个没有左孩子的
+		//第一种是左子树访问完毕, 2,是左子树为空
 		putchar(cur->_data);
 		StackPop(&st);
-		cur = cur->rchild;
+		cur = cur->rchild;//当右子树为空时,检查栈是否为空,都为空时跳出
 	}
 	StackDestory(&st);
 }
@@ -268,23 +295,31 @@ void BinaryTreePostOrderNonR(BTNode* root) {
 	Stack st;
 	BTNode* cur = root;
 	StackInit(&st, 20);
-	char tag[64];
+	char tag[64]; //左子树访问标记, 左子树访问完记为1,反之0
 	do {
-		for (; cur; cur = cur->lchild) {
+		for (; cur; cur = cur->lchild) {//将当前结点和左孩子入栈
 			StackPush(&st, cur);
 			tag[st._top - 1] = 0;
 		}
-		while (!StackEmpty(&st) && tag[st._top - 1] == 1) {//栈不为空并且栈顶元素标记为1
+		while (!StackEmpty(&st) && tag[st._top - 1] == 1) {//栈不为空并且栈顶元素标记为1,
+			//前面的条件只在最后一次循环跳出的时候生效
+			//
+			//1..当cur为空时, 上面for不进, 此条件生效
+			//2, ''''''不为'','''''''''进,'''''''不生效
+			//情况1执行完之后再检查父亲节点是不是也要被打印
 			cur = StackTop(&st);
 			putchar(cur->_data);
 			StackPop(&st);
 		}
 		if (!StackEmpty(&st)) {
 			cur = StackTop(&st);
+			//1,如果上面的while进了, 则证明左子树访问完毕
+			//2,...............没进,.....没有左.........
+			//所以都要给标记置为1
 			tag[st._top - 1] = 1;//当没有左孩子时,给这个元素标记为1
 			cur = cur->rchild;
 		}
-	} while (!StackEmpty(&st));
+	} while (!StackEmpty(&st));//后序遍历中根节点最早入栈, 最后出栈, 如栈空,则已经遍历完毕,跳出
 	StackDestory(&st);
 }
 

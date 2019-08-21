@@ -46,7 +46,7 @@ int main() {
 	printf("节点个数:%d\n",BinaryTreeSize(root));
 	printf("叶子个数:%d\n", BinaryTreeLeafSize(root));
 	printf("%d层节点个数:%d\n", n, BinaryTreeLevelKSize(root, n));
-	BTNode* t = BinaryTreeFind(root, 'E');
+	BTNode* t = BinaryTreeFind(root, 'F');
 	if (t) {
 		printf("树中有%c\n", t->_data);
 	}
