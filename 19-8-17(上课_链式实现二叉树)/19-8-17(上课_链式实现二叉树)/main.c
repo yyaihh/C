@@ -32,7 +32,7 @@ int main() {
 		printf("\n不是完全二叉树\n");
 	}
 
-	
+
 	BTNode* root1 = BinaryTreeCreate("ABD##E##CF##G##");
 	printf("\n层序遍历:");
 	BinaryTreeLevelOrder(root);
@@ -43,7 +43,7 @@ int main() {
 		printf("\n不是完全二叉树\n");
 	}
 	int n = 4;
-	printf("节点个数:%d\n",BinaryTreeSize(root));
+	printf("节点个数:%d\n", BinaryTreeSize(root));
 	printf("叶子个数:%d\n", BinaryTreeLeafSize(root));
 	printf("%d层节点个数:%d\n", n, BinaryTreeLevelKSize(root, n));
 	BTNode* t = BinaryTreeFind(root, 'F');

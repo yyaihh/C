@@ -94,18 +94,13 @@ int BinaryTreeLeafSize(BTNode* root) {//叶子个数
 }
 int BinaryTreeLevelKSize(BTNode* root, int k) {//K层结点
 //1.层序遍历	2.递归(层号是几就在哪一层, 出现几次就有几个)
-#if 0 //递归
-	static int tag = 0;//层数
-	if ((k == 1) && root) {
-		return 1;
-	}
-	if (root) {
-		tag++;
-		return (tag == k) + BinaryTreeLevelKSize(root->lchild, k) + BinaryTreeLevelKSize(root->rchild, k);
-	}
-	else {
+#if 1//递归
+	if (root == NULL || k <= 0)
 		return 0;
-	}
+	if (root != NULL && k == 1)
+		return 1;
+
+	return (BinaryTreeLevelKSize(root->lchild, k - 1) + BinaryTreeLevelKSize(root->rchild, k - 1));
 
 #else //非递归
 	if (k <= 0) {
@@ -156,25 +151,20 @@ int BinaryTreeLevelKSize(BTNode* root, int k) {//K层结点
 }
 BTNode* BinaryTreeFind(BTNode* root, BTDataType x) {//查找
 //遍历
-#if 0//递归
-	BTNode* cur = NULL;
-	if (root) {
-		if (root->_data == x) {
-			cur = root;
-			return cur;
-			root = NULL;
-		}
-		if (root->lchild) {
-			root = root->lchild;
-		}
-		else if (root->rchild) {
-			root = root->rchild;
-		}
-		else {
-			return NULL;
-		}
+#if 1//递归
+	if (root == NULL){
+		//非法输入
+		return;
 	}
-	return BinaryTreeFind(root, x);
+	//如果找到了直接返回
+	if (root->_data == x){
+		return root;
+	}
+
+	else{
+		return BinaryTreeFind(&root->lchild, x);
+		return BinaryTreeFind(&root->rchild, x);
+	}
 #else //非递归
 	Stack st;
 	BTNode* cur = root;
