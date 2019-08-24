@@ -1,5 +1,5 @@
 #include"hpsort.h"
-void adjustDown(HPDataType* array, int n, int size) {
+void adjustDown(HPDataType* array, int n, int size) {//向下调整算法
 	int cur = n;
 	int tmp;
 	while (cur * 2 + 1 < size) {//循环直到左孩子不存在
@@ -46,3 +46,9 @@ void HeapSort(HPDataType* array, int size) {
 	size = tmp;
 }
 
+void PrintArray(int* src, int size) {
+	for (int i = 0; i < size; ++i) {
+		printf("%d ", src[i]);
+	}
+	putchar('\n');
+}

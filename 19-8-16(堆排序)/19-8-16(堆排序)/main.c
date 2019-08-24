@@ -1,17 +1,18 @@
 #include"hpsort.h"
-
+#include<time.h>
+#define N 100000
 int main() {
-	int a[10] = { 3,56,23,45,3,67,32,78,45,-1 };
-	int n = sizeof(a) / 4;
-	printf("≈≈–Ú«∞\n");
-	for (int i = 0; i < n; ++i) {
-		printf("%d ", a[i]);
+	srand((unsigned int)time(0));
+	int src[N];
+	for (int i = 0; i < N; ++i) {
+		src[i] = rand() % N + 1;
 	}
+
+	//printf("≈≈–Ú«∞\n");
+	//PrintArray(src, N);
 	printf("\n≈≈–Ú∫Û\n");
-	HeapSort(a, n);
-	for (int i = 0; i < n; ++i) {
-		printf("%d ", a[i]);
-	}
+	HeapSort(src, N);
+	PrintArray(src, N);
 	putchar('\n');
 	system("pause");
 	return 0;

@@ -32,4 +32,4 @@ int doublePointerWay3(int* src, int start, int end);//Ë«Ö¸Õë·¨ÓÅ»¯2,¸²¸Ç²»½»»»(Í
 int HoareWay(int* src, int start, int end);//»ô¶û·¨
 void dealQuickSort(int* src, int start, int end);
 void QuickSort(int* src, int size);//¿ìËÙÅÅĞò
-void QuickSortNoR(int* src, int size);
+void QuickSortNoR(int* src, int size);//¿ìËÙÅÅĞòµÄ·Çµİ¹éÊµÏÖ
