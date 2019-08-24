@@ -1,7 +1,10 @@
 #include"sort.h"
+#include"queue.h"
 void InsertSort(int* src, int size) { //直接插入排序
 	//数组越有序插排序越快, 数组规模较小时插排最优
 	//稳定的
+	//大数据下慢
+	//O(n)-O(n^2)
 	int j;
 	int tmp;
 	for (int i = 1; i < size; ++i) {
@@ -115,13 +118,13 @@ int doublePointerWay2(int* src, int start, int end) {
 	return a;
 }
 int doublePointerWay3(int* src, int start, int end) {
-	int cur = (start + end) / 2;
-	//int mid = start;
+	//int cur = (start + end) / 2;
+	int cur = start;
 	int tmp = src[cur];
 	int a = start;
 	int b = end;
 	while (a < b) { 
-		while (b > 0 && src[b] > tmp) {
+		while (b > start && src[b] > tmp) {
 			--b;
 		}
 		if (a < b) {
@@ -140,14 +143,76 @@ int doublePointerWay3(int* src, int start, int end) {
 	src[cur] = tmp;
 	return cur;
 }
+int HoareWay(int* src, int start, int end) {
+	int a = start + 1;
+	int b = end - 2;
+	int mid = (start + end) / 2;
+	if (src[start] > src[mid]) {
+		swapArga(src + start, src + mid);
+	}
+	if (src[mid] > src[end]) {
+		swapArga(src + mid, src + end);
+	}
+	if (src[start] > src[mid]) {
+		swapArga(src + start, src + mid);
+	}
+	if (end - start <= 2) {
+		return mid;
+	}
+	swapArga(src + mid, src + end - 1);
+	while (a <= b) {
+		while (a < end - 1&& src[a] <= src[end - 1]) {
+			++a;
+		}
+		while (b > 0 && src[b] >= src[end - 1]) {
+			--b;
+		}
+		if (a == b && (a == 1 || a == end - 1)) {
+			break;
+		}
+		if (a < b) {
+			swapArga(src + a, src + b);
+		}
+	}
+	swapArga(src + a, src + end - 1);
+	return a;
+}
 void dealQuickSort(int* src, int start, int end) {
 	int mid;
-	if (start < end) {
-		mid = doublePointerWay3(src, start, end);
+	if (start + 8 < end) {//当数组长度大于8时,快排
+		mid = HoareWay(src, start, end);
 		dealQuickSort(src, start, mid - 1);
 		dealQuickSort(src, mid + 1, end);
+	}
+	else {//否则进插排
+		InsertSort(src + start, end - start + 1);
 	}
 }
 void QuickSort(int* src, int size) {
 	dealQuickSort(src, 0, size - 1);
+}
+void QuickSortNoR(int* src, int size) {
+	int start;
+	int end;
+	int mid;
+	Queue qu;
+	QueueInit(&qu);
+	QueuePush(&qu, 0);
+	QueuePush(&qu, size - 1);
+	while (!QueueEmpty(&qu)) { 
+		start = QueueTop(&qu);
+		QueuePop(&qu);
+		end = QueueTop(&qu);
+		QueuePop(&qu);
+		mid = HoareWay(src, start, end);
+		if (start < mid - 1) {
+			QueuePush(&qu, start);
+			QueuePush(&qu, mid);
+		}
+		if (mid + 1 < end) { 
+			QueuePush(&qu, mid + 1);
+			QueuePush(&qu, end);
+		}
+	}
+	QueueDestory(&qu);
 }

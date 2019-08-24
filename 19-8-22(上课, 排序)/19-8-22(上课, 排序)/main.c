@@ -1,4 +1,3 @@
-
 #include"sort.h"
 #define N 10000
 void PrintArray(int* src, int size) {
@@ -22,8 +21,9 @@ int main() {
 	PrintArray(src1, 10);
 	QuickSort(src2, 10);
 	PrintArray(src2, 10);*/
-	QuickSort(src3, 10);
-	PrintArray(src3, 10);
+	//QuickSort(src, 10);
+	QuickSortNoR(src, 10);
+	PrintArray(src, 10);
 #else
 	srand(time(0));
 	int src[N];
@@ -32,7 +32,8 @@ int main() {
 	}
 	//InsertSort(src, N);
 	//ShellSort(src, N);
-	QuickSort(src, N);
+	//QuickSort(src, N);
+	QuickSortNoR(src, N);
 	PrintArray(src, N);
 #endif
 
