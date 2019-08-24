@@ -1,7 +1,6 @@
 #include"hpsort.h"
 void adjustDown(HPDataType* array, int n, int size) {//向下调整算法
-	int cur = n;
-	int tmp;
+	int cur = n, tmp;
 	while (cur * 2 + 1 < size) {//循环直到左孩子不存在
 		if (cur * 2 + 2 >= size) {
 			n = cur * 2 + 1;//没有右孩子, 只能是左孩子
@@ -36,7 +35,7 @@ void HeapPop(HPDataType* array,int* size) {
 }
 void HeapSort(HPDataType* array, int size) {
 	for (int i = size / 2 - 1; i >= 0; --i) {//将数组变成堆
-		adjustDown(array, i, size);
+		adjustDown(array, i, size);//向下调整算法
 	}
 
 	int tmp = size;
