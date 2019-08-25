@@ -19,9 +19,9 @@ void ShellSort(int* src, int size) {
 	//不稳定
 	int j;
 	int gap, tmp;
-	gap = size / 2;//n/3是最快的
+	gap = size / 3;//n/3是最快的
 	for (int k = 0; gap; ++k) {
-		if (k >= gap) {
+		if (k == gap) {
 			gap /= 2;
 			k = -1;
 			continue;
