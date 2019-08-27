@@ -3,30 +3,36 @@
 using namespace std;
 //将一个字符串转换为数字，返回值用来校验转换是否成功
 bool strtoi(const char* str, int &num) {
+	if (!str) {
+		return false;
+	}
+	int flag = 1;//正负标签
+	if (*str == '-') {
+		flag = -1;
+		++str;
+	}
+	if (*str > '9' || *str < '0') {
+		return false;
+	}
 	long long tmp = 0;
-	double max = pow(2, 31);
-	int t;
-	for (int k = 0; *str; ++str) { 
-		if (k) {
-			tmp *= (long)pow(10, k);
-			k = 0;
-		}
-		t = *(str + 1);
-		while (t) {
-			++k;
-			t /= 10;
-		}
-		tmp += (int)*str;
-		if (tmp >= max) {
-			return false;
-		}
+	double max = pow(2, 31) - 1;
+	double min = -pow(2, 31);
+	for (; *str <= '9' && *str >= '0'&& *str; ++str) { 
+		tmp = (int)*str - 48 + tmp * 10;
+	}
+	tmp = flag * tmp;
+	if (tmp < min) {
+		return false;
+	}
+	if (tmp > max) {
+		return false;
 	}
 	num = (int)tmp;
 	return true;
 }
 int main() {
 	int num = 0;
-	char str[10];
+	char str[20];
 	cout << "请输入一个字符串\n";
 	scanf("%s", &str);
 	if (strtoi(str, num)) {
