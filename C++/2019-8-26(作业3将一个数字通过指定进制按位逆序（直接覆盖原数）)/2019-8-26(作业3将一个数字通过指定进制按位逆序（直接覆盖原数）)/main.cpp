@@ -18,7 +18,7 @@ void Print_2(int num) {
 }
 int main() {
 	int num1, num2, num3, num4;
-	num1 = num2 = num3 = num4 = 1000;
+	num1 = num2 = num3 = num4 = 25;
 	printf("2进制输出%d为:", num1);
 	Print_2(num1);
 	sysReverse(num1, 2);
