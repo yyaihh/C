@@ -96,17 +96,14 @@ int doublePointerWay1(int* src, int start, int end) {
 }
 
 int doublePointerWay2(int* src, int start, int end) {
-	int mid = (start + end) / 2;
+
 	int a = start;
+	int mid = (start + end) / 2;
 	int b = end - 1;//-1是因为接下来交换了最后一个和中间的, 
 	swapArga(src + mid, src + end);
-	while (a <= b) { 
-		while (a < end && src[a] <= src[end]) { 
-			++a;
-		}
-		while (b > 0 && src[b] >= src[end]) { 
-			--b;
-		}
+	while (a <= b) {
+		for (; a < end &&src[a] <= src[end]; ++a);
+		for (; b > 0 && src[b] >= src[end]; --b);
 		if (a == b && (a == 0 || a == end)) {
 			break;
 		}
@@ -117,7 +114,7 @@ int doublePointerWay2(int* src, int start, int end) {
 	swapArga(src + a, src + end);
 	return a;
 }
-int doublePointerWay3(int* src, int start, int end) {
+int digWay(int* src, int start, int end) {//挖坑法
 	//int cur = (start + end) / 2;
 	int cur = start;
 	int tmp = src[cur];
@@ -164,7 +161,7 @@ int HoareWay(int* src, int start, int end) {
 		while (a < end - 1&& src[a] <= src[end - 1]) {
 			++a;
 		}
-		while (b > 0 && src[b] >= src[end - 1]) {
+		while (b > 1 && src[b] >= src[end - 1]) {
 			--b;
 		}
 		if (a == b && (a == 1 || a == end - 1)) {
@@ -180,7 +177,7 @@ int HoareWay(int* src, int start, int end) {
 void dealQuickSort(int* src, int start, int end) {
 	int mid;
 	if (start + 8 < end) {//当数组长度大于8时,快排
-		mid = HoareWay(src, start, end);
+		mid = doublePointerWay2(src, start, end);
 		dealQuickSort(src, start, mid - 1);
 		dealQuickSort(src, mid + 1, end);
 	}

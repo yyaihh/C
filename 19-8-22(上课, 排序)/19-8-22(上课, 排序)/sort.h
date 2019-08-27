@@ -26,7 +26,7 @@ void dealMergeSort(int* src, int* tmp, int start, int size);//归并排序
 void swapArga(int* a, int* b);//交换
 int doublePointerWay1(int* src, int start, int end);//双指针法
 int doublePointerWay2(int* src, int start, int end);//双指针法优化1
-int doublePointerWay3(int* src, int start, int end);//双指针法优化2,覆盖不交换(挖坑法)
+int digWay(int* src, int start, int end);//双指针法优化2,覆盖不交换(挖坑法)
 //时间复杂度为nlog2(n) 到 n^2
 //所以要用霍尔法(三数取中法)进行优化
 int HoareWay(int* src, int start, int end);//霍尔法

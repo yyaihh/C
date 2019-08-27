@@ -5,8 +5,8 @@ void sysReverse(int &num, int n) {
 	int tmp = 0;
 	while (num) { 
 		tmp += num % n;
+		tmp *= n;
 		num /= n;
-		num ? tmp *= n : tmp;
 	}
 	num = tmp;
 }
