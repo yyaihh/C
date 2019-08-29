@@ -24,8 +24,11 @@ public:
 class ALL {
 private:
 	Poker src[54];
-	int size = 53;
+	int size;
 public:
+	ALL() {
+		size = 53;
+	}
 	void InitPoker();//初始化一副牌, 洗牌
 	void allprint();
 	Poker* fapai();//发牌
@@ -35,8 +38,11 @@ public:
 class Player {
 private:
 	Poker a[18];
-	int size = 0;
+	int size;
 public:
+	Player() {
+		size = 0;
+	}
 	void Draw1_(ALL& A);//手动摸牌, 一次取一张摸牌
 	void Draw18(ALL& A);//自动发牌,一次18张
 	void print();//
