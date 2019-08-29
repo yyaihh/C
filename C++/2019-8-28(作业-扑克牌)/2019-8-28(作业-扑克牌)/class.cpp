@@ -38,7 +38,7 @@ void ALL::allprint() {
 	for (auto i : src) {
 		i.output();
 	}
-	cout << endl;
+	cout << endl<<endl;
 }
 Poker* ALL::fapai() {
 	if (size >= 0) {
@@ -74,7 +74,7 @@ void Player::print() {
 	for (auto i : a) {
 		i.output();
 	}
-	cout << endl;
+	cout << endl << endl << endl;
 }
 bool Player::cmppoker(Poker a, Poker b) {
 	return (a.Point() > b.Point()) ||
