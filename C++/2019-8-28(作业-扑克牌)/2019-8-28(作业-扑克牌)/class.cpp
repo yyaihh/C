@@ -49,7 +49,7 @@ Poker* ALL::fapai() {
 		return nullptr;
 	}
 }
-void Player::Draw1(ALL& A) {
+void Player::Draw1_(ALL& A) {
 	if (size < 18) {
 		a[size++] = *(A.fapai());
 	}
@@ -57,9 +57,17 @@ void Player::Draw1(ALL& A) {
 		cout << "È¡ÅÆ½áÊø\n";
 	}
 }
+
 void Player::Draw18(ALL& A) {
 	for (auto& i : a) {
 		i = *(A.fapai());
+	}
+}
+void ALL::draw1(ALL& A, Player& p1, Player& p2, Player& p3) {
+	for (int i = 0; i < 18; ++i) {
+		p1.Draw1_(A);
+		p2.Draw1_(A);
+		p3.Draw1_(A);
 	}
 }
 void Player::print() {

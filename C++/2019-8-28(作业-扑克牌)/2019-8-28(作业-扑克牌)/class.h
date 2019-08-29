@@ -8,7 +8,8 @@ enum {
 	DIAMONDS,//方片
 	JOKER  //大小王
 };
-
+class ALL;
+class  Player;
 class Poker {
 private:	
 	int type;
@@ -28,6 +29,7 @@ public:
 	void InitPoker();//初始化一副牌, 洗牌
 	void allprint();
 	Poker* fapai();//发牌
+	void draw1(ALL& A, Player& p1, Player& p2, Player& p3);
 };
 
 class Player {
@@ -35,7 +37,7 @@ private:
 	Poker a[18];
 	int size = 0;
 public:
-	void Draw1(ALL& A);//手动摸牌, 一次取一张摸牌
+	void Draw1_(ALL& A);//手动摸牌, 一次取一张摸牌
 	void Draw18(ALL& A);//自动发牌,一次18张
 	void print();//
 	bool cmppoker(Poker a, Poker b);

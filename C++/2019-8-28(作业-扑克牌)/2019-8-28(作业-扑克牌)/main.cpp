@@ -6,13 +6,9 @@ int main() {
 	ALL a;
 	//cout << "洗牌后\n";
 	a.InitPoker();
-	//a.allprint();
+	//a.allprint();//输出洗后的牌
 	Player p1, p2, p3;
-	for (int i = 0; i < 18; ++i) {
-		p1.Draw1(a);
-		p2.Draw1(a);
-		p3.Draw1(a);
-	}
+	a.draw1(a, p1, p2, p3);
 	cout << "玩家1抽取的牌\n";
 	p1.print();
 	p1.InsertSort();
