@@ -10,17 +10,22 @@ int main() {
 		{6,8,11,15}
 	};
 	int num;
-	int i, j;
-	i = j = 0;
+	int i = 0;
+	int j = M - 1;
 	cout << "请输入需要查找的数\n";
 	cin >> num;
-	while (1) {
-		if (a[i][j] < num) {
-			++j;
+	while (i < N && j >= 0) {
+		for (; j >= 0 && a[i][j] > num; --j);
+		for (; i < N && a[i][j] < num; ++i);
+		if (num == a[i][j]) {
+			break;
 		}
-		else if (a[i][j] > num) {
-			++i
-		}
+	}
+	if (i < N && j >= 0 && a[i][j]==num) {
+		cout << "找到了!坐标是" << i << "  " << j << endl;
+	}
+	else {
+		cout << "没找到!\n";
 	}
 	system("pause");
 	return 0;
