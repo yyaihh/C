@@ -2,21 +2,21 @@
 void SeqListInit(SeqList* psl, size_t capacity) {//初始化
 	psl->array = (SLDataType*)calloc(capacity, sizeof(SeqList));
 	psl->size = 0;
-	psl->capicity = capacity;
+	psl->capacity = capacity;
 }
 void SeqListDestory(SeqList* psl) {//销毁空间
 	assert(psl);
 	if (psl->array) {
 		free(psl->array);
 		psl->size = 0;
-		psl->capicity = 0;
+		psl->capacity = 0;
 	}
 }
 void CheckCapacity(SeqList* psl) {//检查容量
 	assert(psl);
-	if (psl->size == psl->capicity) {
-		psl->capicity *= 2;
-		psl->array = (SLDataType*)realloc(psl->array, psl->capicity * sizeof(SLDataType));
+	if (psl->size == psl->capacity) {
+		psl->capacity *= 2;
+		psl->array = (SLDataType*)realloc(psl->array, psl->capacity * sizeof(SLDataType));
 	}
 }
 void SeqListPushBack(SeqList* psl, SLDataType x) {//尾插

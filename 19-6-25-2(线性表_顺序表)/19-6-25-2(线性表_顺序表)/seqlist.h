@@ -7,7 +7,7 @@ typedef int SLDataType;
 typedef struct SeqList {
 	SLDataType* array;
 	size_t size;
-	size_t capicity;
+	size_t capacity;
 }SeqList;
 void SeqListInit(SeqList* psl, size_t capacity);//³õÊ¼»¯
 void SeqListDestory(SeqList* psl);//Ïú»Ù

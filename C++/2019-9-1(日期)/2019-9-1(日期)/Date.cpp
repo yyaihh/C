@@ -5,16 +5,18 @@ Date::Date(int y, int m, int d) {
 	m_month = m;
 	m_day = d;
 }
-void Date::print() {
-	cout << m_year << "年" << m_month << "月" << m_day << "日\n";
-}
 bool Date::LeapYear(int y) {
 	return y % 400 == 0 || (y % 4 == 0 && y % 100 != 0);
 }
 Date Date::ComputationTime(int n) {
+	//Date a(year, month, day);
 	int year = m_year;
 	int month = m_month;
 	int day = m_day;
+	int m;
+	for (LeapYear(year) ? m = 365 : m = 366; n >= m; n -= m, ++year) {
+		LeapYear(year) ? m = 365 : m = 366;
+	}
 	LeapYear(year) ? m_s_month[1] = 29 : m_s_month[1] = 28;
 	while (1) { 
 		for (; n > 0 && day < m_s_month[month - 1]; ++day, --n);
@@ -36,7 +38,10 @@ Date Date::ComputationTime(int n) {
 Date::~Date() {
 }
 int Date::m_s_month[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
-
+ostream& operator<<(ostream& _cout, Date& a) {
+	cout << a.m_year << "年" << a.m_month << "月" << a.m_day << "日";
+	return _cout;
+}
 void input(int& y, int& m, int& d) {
 	printf("请输入年份\n");
 	while (1) {

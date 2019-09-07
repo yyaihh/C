@@ -5,10 +5,11 @@ int main() {
 	Date a(y, m, d);
 	cout << "你想知道多少天后的日期,请输入\n";
 	cin >> n;
-	a.print();
+	cout << a << endl;
 	cout << "在" << n << "天后是";
 	Date b = a.ComputationTime(n);
-	b.print();
+	Date c = a;
+	cout << b << endl;
 	system("pause");
 	return 0;
 }
