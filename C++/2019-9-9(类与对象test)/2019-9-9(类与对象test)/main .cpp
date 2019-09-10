@@ -34,27 +34,39 @@
 //	system("pause");
 //	return 0;
 //}
-#include<iostream>
-using namespace std;
-class A {
-	int m_a;
-public:
-	explicit A(int a = 0) :m_a(a) {
-	
-	}
-	void PrintA();
-};
-void A::PrintA() {
-	cout << m_a << endl;
-}
-int main() {
-	A a;
-	a = 100;
-	cout << "打印a\n";
-	a.PrintA();
-	system("pause");
-	return 0;
-}
+//#include<iostream>
+//using namespace std;
+//class A {
+//	int m_a;
+//public:
+//	explicit A(int a = 0) :m_a(a) {
+//	
+//	}
+//	friend ostream& operator<<(ostream& os, A& t);
+//	friend istream& operator>>(istream& os, A& t);
+//	void PrintA();
+//};
+//void A::PrintA() {
+//	cout << m_a << endl;
+//}
+//ostream& operator<<(ostream& os, A& t) {
+//	os << t.m_a << endl;
+//	return os;
+//}
+//istream& operator>>(istream& os, A& t) {
+//	os >> t.m_a;
+//	return os;
+//}
+//int main() {
+//	A a;
+//	cout << "输入a的数据\n";
+//	cin >> a;
+//	cout << "打印a\n";
+//	cout << a;
+//	operator<<(cout, a);
+//	system("pause");
+//	return 0;
+//}
 //explicit A(int a = 0) :m_a(a) {
 //
 //}
