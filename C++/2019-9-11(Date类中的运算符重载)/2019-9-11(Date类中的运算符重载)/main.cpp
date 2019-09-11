@@ -3,7 +3,8 @@
 int main() {
 	Date a, b, c;
 	cin >> a;
-	cin >> b;
+	b = a;
+	/*cin >> b;
 	c = b;
 	cout << "a:" << a << endl;
 	cout << "b:" << b << endl;
@@ -23,6 +24,9 @@ int main() {
 	cout << "a:" << a << endl;
 	cout << "b:" << b << endl;
 	cout << "c:" << c << endl;
+	cout << a - b;*/
+	a += 1462;
+	cout << a << endl;
 	cout << a - b;
 	system("pause");
 	return 0;

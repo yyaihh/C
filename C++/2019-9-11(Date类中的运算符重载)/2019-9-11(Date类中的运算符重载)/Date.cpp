@@ -1,7 +1,7 @@
 #include"Date.h"
 int Date::m_s_months[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 int Date::getMonthDay(int y, size_t n) {
-	return m_s_months[n-1]+ (n == 2 && y % 400 == 0 || (y % 4 == 0 && y % 100));
+	return m_s_months[n-1]+ (n == 2 && (y % 400 == 0 || (y % 4 == 0 && y % 100)));
 }
 Date& Date::operator=(const Date& t) {
 	if (this != &t) {
@@ -27,11 +27,11 @@ bool Date::operator<(const Date& t)const {
 	if (m_year < t.m_year) {
 		return true;
 	}
-	else if (m_year == t.m_year && m_month < t.m_month) { 
+	if (m_year == t.m_year && m_month < t.m_month) {
 		return true;
-		if (m_month == t.m_month && m_day < t.m_day) { 
-			return true;
-		}
+	}
+	if (m_month == t.m_month && m_day < t.m_day) { 
+		return true;
 	}
 	return false;
 }
@@ -42,11 +42,11 @@ bool Date::operator>(const Date& t)const {
 	if (m_year > t.m_year) {
 		return true;
 	}
-	else if (m_year == t.m_year && m_month > t.m_month) {
+	if (m_year == t.m_year && m_month > t.m_month) {
 		return true;
-		if (m_month == t.m_month && m_day > t.m_day) {
-			return true;
-		}
+	}
+	if (m_month == t.m_month && m_day > t.m_day) {
+		return true;
 	}
 	return false;
 }
@@ -142,9 +142,36 @@ Date Date::operator--(int) {
 	}
 	return tmp;
 }
-//Date& Date::operator+=(size_t n) {
-//
-//}
+bool Date::LeapYear(int year) const{
+	return year % 400 == 0 || (year % 4 == 0 && year % 100);
+}
+Date& Date::operator+=(size_t n) {
+	size_t count = 0;
+	for (int i = 1; i < (int)m_month; ++i) {
+		count += getMonthDay(m_year, i);
+	}
+	count += m_day;
+	if (n >= (365 + LeapYear(m_year) - count)) { 
+		n -= (365 + LeapYear(m_year) - count);
+		--n;
+		m_month = 1;
+		m_day = 1;
+		++m_year;
+		while ((int)n > (365 + LeapYear(m_year))) {
+			n -= (365 + LeapYear(m_year++));
+		}
+	}
+	for (;n > 0; --n) {
+		if (m_day == getMonthDay(m_year, m_month)) {
+			m_day = 1;
+			m_month == 12 ? m_month = 1 : ++m_month;
+		}
+		else {
+			++m_day;
+		}
+	}
+	return *this;
+}
 //Date Date::operator+(size_t n)const {
 //
 //}
@@ -161,7 +188,7 @@ int Date::countLeapYear(int year)const {
 		begin = year;
 		end = m_year;
 	}
-	while (!(begin % 400 == 0 || (begin % 4 == 0 && begin % 100)) && begin < end) {
+	while (!(LeapYear(begin) && begin < end)) {
 		++begin;
 	}
 	return (end - begin) / 4 + (begin <= end);
@@ -174,7 +201,9 @@ int Date::operator-(const Date& t)const {
 		mindate = t;
 	}
 	int count = 0;
-	count += countLeapYear(t.m_year) + (maxdate.m_year - mindate.m_year) * 365;
+	if (maxdate.m_year > mindate.m_year) {
+		count += countLeapYear(t.m_year) + (maxdate.m_year - mindate.m_year) * 365;
+	}
 	for (int i = 1; i < (int)mindate.m_month; ++i) {
 		count -= getMonthDay(mindate.m_year, i);
 	}

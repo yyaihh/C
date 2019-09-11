@@ -14,6 +14,7 @@ public:
 	{
 	}
 	static int getMonthDay(int y,size_t n);//返回y年n月的天数
+	bool LeapYear(int year)const;
 	int countLeapYear(int year)const;
 	Date& operator=(const Date& t);
 	friend ostream& operator<<(ostream& os, const Date& t);
