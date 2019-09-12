@@ -1,64 +1,32 @@
 #include "Date.h"
-
-Date::Date(int y, int m, int d) {
-	m_year = y;
-	m_month = m;
-	m_day = d;
+int Date::m_s_month[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+int Date::getMonthDay(int y, size_t n) {
+	return m_s_month[n - 1] + (n == 2 && (y % 400 == 0 || (y % 4 == 0 && y % 100)));
 }
-bool Date::LeapYear(int y) {
+bool Date::LeapYear(int y)const {
 	return y % 400 == 0 || (y % 4 == 0 && y % 100 != 0);
 }
-Date Date::ComputationTime(int n) {
-	//Date a(year, month, day);
-	int year = m_year;
-	int month = m_month;
-	int day = m_day;
-	int m;
-	for (LeapYear(year) ? m = 365 : m = 366; n >= m; n -= m, ++year) {
-		LeapYear(year) ? m = 365 : m = 366;
-	}
-	LeapYear(year) ? m_s_month[1] = 29 : m_s_month[1] = 28;
-	while (1) { 
-		for (; n > 0 && day < m_s_month[month - 1]; ++day, --n);
-		if (n == 0) {
-			Date a(year, month, day);
-			return a;
-		}
-		if (month == 12) {
-			month = 1;
-			++year;
-			LeapYear(year) ? m_s_month[1] = 29 : m_s_month[1] = 28;
-		}
-		else {
-			++month;
-		}
-		day = 0;
-	}
+ostream& operator<<(ostream& os, Date& a) {
+	os << a.m_year << "年" << a.m_month << "月" << a.m_day << "日";
+	return os;
 }
-Date::~Date() {
-}
-int Date::m_s_month[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
-ostream& operator<<(ostream& _cout, Date& a) {
-	cout << a.m_year << "年" << a.m_month << "月" << a.m_day << "日";
-	return _cout;
-}
-void input(int& y, int& m, int& d) {
+istream& operator>>(istream& os, Date& t) {
 	printf("请输入年份\n");
 	while (1) {
-		cin >> y;
-		if (y >= 0) {
+		os >> t.m_year;
+		if (t.m_year >= 0) {
 			break;
 		}
 		cout << "年份必须非负,请重新输入年份\n";
 	}
 	cout << "请输入月份\n";
 	while (1) {
-		cin >> m;
-		if (m < 1) {
+		os >> t.m_month;
+		if (t.m_month < 1) {
 			cout << "月份必须大于0, 请重新输入\n";
 			continue;
 		}
-		if (m > 12) {
+		if (t.m_month > 12) {
 			cout << "月份必须小于等于12, 请重新输入\n";
 			continue;
 		}
@@ -66,37 +34,69 @@ void input(int& y, int& m, int& d) {
 	}
 	cout << "请输入日\n";
 	while (1) {
-		cin >> d;
-		if (d < 1) {
+		os >> t.m_day;
+		if (t.m_day < 1) {
 			cout << "请输入大于0的天数\n";
 			continue;
 		}
-		if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
-			if (d > 31) {
-				cout << "您输入的天数大于" << m << "月天数,请重新输入\n";
-				continue;
-			}
-			break;
+		if (t.m_day > Date::getMonthDay(t.m_year, t.m_month)) {
+			cout << "你输入的号数大于本月天数" << Date::getMonthDay(t.m_year, t.m_month) << "请重新输入\n";
+			continue;
 		}
-		else if (m == 2) {
-			if ((y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)) && d > 29) {
-				cout << "您输入的天数大于" << m << "月天数,请重新输入\n";
-				continue;
-			}
-			if (!(y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)) && d > 28) {
-				cout << "您输入的天数大于" << m << "月天数,请重新输入\n";
-				continue;
-			}
-			break;
+		break;
+	}
+	return os;
+}
+int Date::countLeapYear(int year)const {
+	if (m_year == year) {
+		return LeapYear(year);
+	}
+	int begin = m_year;
+	int end = year - 1;
+	if (m_year > year) {
+		begin = year;
+		end = m_year - 1;
+	}
+	while (!(LeapYear(begin))) {
+		++begin;
+	}
+	while (!(LeapYear(end))) {
+		--end;
+	}
+	int tmp = begin;
+	int count = 0;
+	if (begin <= end) {
+		while (tmp <= end && tmp % 100) {
+			++tmp;;
 		}
-		else {
-			if (d > 30) {
-				cout << "您输入的天数大于" << m << "月天数,请重新输入\n";
-				continue;
-			}
-			break;
+		for (; tmp <= end; !LeapYear(tmp) ? ++count : count, tmp += 100);
+		return (end - begin) / 4 + 1 - count;
+	}
+	return 0;
+}
+Date Date::operator+(size_t n)const {
+	Date tmp = *this;
+	size_t count = 0;
+	for (int i = 1; i < (int)tmp.m_month; ++i) {
+		count += getMonthDay(tmp.m_year, i);
+	}
+	count += tmp.m_day;
+	if (n >= (365 + LeapYear(tmp.m_year) - count)) {
+		n -= (365 + LeapYear(tmp.m_year) - count);
+		tmp.m_month = 12;
+		tmp.m_day = 31;
+		while ((int)n >= (365 + LeapYear(tmp.m_year + 1))) {
+			n -= (365 + LeapYear(++tmp.m_year));
 		}
 	}
+	for (; n > 0; --n) {
+		if (tmp.m_day == getMonthDay(tmp.m_year, tmp.m_month)) {
+			tmp.m_day = 1;
+			tmp.m_month == 12 ? tmp.m_month = 1, ++tmp.m_year : ++tmp.m_month;
+		}
+		else {
+			++tmp.m_day;
+		}
+	}
+	return tmp;
 }
-
-

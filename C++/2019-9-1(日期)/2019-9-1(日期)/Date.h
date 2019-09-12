@@ -7,15 +7,15 @@ class Date {
 	int m_month;
 	int m_day;
 public:
-	Date(int y, int m, int d);
-	friend ostream& operator<<(ostream& _cout, Date& a);
-	Date ComputationTime(int n);
-	bool LeapYear(int y);
-	~Date();
-	Date& operator=(const Date& d) {
-		m_year = d.m_year;
-		m_month = d.m_month;
-		m_day = d.m_day;
+	Date(int y = 0, int m = 0, int d = 0) {
+		m_year = y;
+		m_month = m;
+		m_day = d;
 	}
+	friend ostream& operator<<(ostream& os, Date& a);
+	friend istream& operator>>(istream& os, Date& a);
+	static int getMonthDay(int y, size_t n);//返回y年n月的天数
+	bool LeapYear(int year)const;
+	int countLeapYear(int year)const;
+	Date operator+(size_t n)const;
 };
-void input(int& y, int& m, int& d);
