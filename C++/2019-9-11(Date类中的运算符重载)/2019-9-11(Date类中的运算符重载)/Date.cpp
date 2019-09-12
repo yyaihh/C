@@ -12,13 +12,13 @@ Date& Date::operator=(const Date& t) {
 	return *this;
 }
 ostream& operator<<(ostream& os, const Date& t) {
-	cout << t.m_year << "年" << t.m_month << "月" << t.m_day << "日";
+	os << t.m_year << "年" << t.m_month << "月" << t.m_day << "日";
 	return os;
 }
 istream& operator>>(istream& os, Date& t) {
 	printf("请输入年份\n");
 	while (1) {
-		cin >> t.m_year;
+		os >> t.m_year;
 		if (t.m_year >= 0) {
 			break;
 		}
@@ -26,7 +26,7 @@ istream& operator>>(istream& os, Date& t) {
 	}
 	cout << "请输入月份\n";
 	while (1) {
-		cin >> t.m_month;
+		os >> t.m_month;
 		if (t.m_month < 1) {
 			cout << "月份必须大于0, 请重新输入\n";
 			continue;
@@ -39,7 +39,7 @@ istream& operator>>(istream& os, Date& t) {
 	}
 	cout << "请输入日\n";
 	while (1) {
-		cin >> t.m_day;
+		os >> t.m_day;
 		if (t.m_day < 1) {
 			cout << "请输入大于0的天数\n";
 			continue;
