@@ -31,7 +31,6 @@ public:
 	Date& operator--();
 	Date operator++(int);
 	Date operator--(int);
-	int operator[](size_t n);
 
 	static int getMonthDay(int y, size_t n);//返回y年n月的天数
 	bool LeapYear(int year)const;

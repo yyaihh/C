@@ -49,10 +49,6 @@ void test2() {
 	cout << "a:" << a << endl;
 	cout << "a:" << a-- << endl;
 	cout << "a:" << a << endl;
-	cout << "日期a这一年的每个月天数\n";
-	for (int i = 1; i <= 12; ++i) {
-		cout << i << "月是" << a[i] << "天\n";
-	}
 }
 int main() {
 	test1();

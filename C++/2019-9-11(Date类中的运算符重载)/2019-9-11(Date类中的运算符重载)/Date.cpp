@@ -339,6 +339,3 @@ int Date::operator-(const Date& t)const {
 	count += maxdate.m_day;
 	return count;
 }
-int Date::operator[](size_t n) {
-	return m_s_months[n - 1] + (n == 2 && (m_year % 400 == 0 || (m_year % 4 == 0 && m_year % 100)));
-}
