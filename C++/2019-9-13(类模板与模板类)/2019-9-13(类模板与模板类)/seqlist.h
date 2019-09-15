@@ -32,7 +32,7 @@ public:
 template <class T>
 void seqList<T>::PushBack(const T& data) {
 	if (m_size == m_capacity) {
-		int* tmp;
+		T* tmp;
 		while (m_size >= m_capacity) {
 			m_capacity += 10;
 		}
