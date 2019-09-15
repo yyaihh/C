@@ -87,19 +87,36 @@ void test3() {
 	}
 	cout << endl;
 	char c = 'd';
-	int pos = 0;
-	size_t n = s.find(c, pos);
-	//size_t find (char c, size_t pos =0)const
-	//从字符串pos位置开始往后找字符c，返回该字符在字符串中的位置
-	n ? cout << c << "在字符串s中第" << n << "个位置\n" :
-		cout << c << "不在从" << pos << "位置开始往后的字符串中\n";
-	int npos = 10;
-	n = s.rfind(c, npos);
-	//size_t rfind (char c, size_t pos =0)const
-	//从字符串pos位置开始往前找字符c，返回该字符在字符串中的位置
-	n ? cout << c << "在字符串s中第" << n << "个位置\n" : 
-		cout << c << "不在从" << npos << "位置开始往后的字符串中\n";
-	string s3 = s.substr(pos, npos);
+	size_t pos = 0;
+	size_t n = s.find(c, pos);//pos<s.size();否则会发生访问越界
+	//size_t find (char c, size_t pos =0)const //pos是缺省参数, 不传就是从0开始
+	//从字符串pos位置开始往后找字符c，找到字符返回字符串中的下标,找不到返回-1, 因为返回值是size_t所以是4294967295
+	n != (size_t)-1 ? cout << c << "在字符串s中下标为" << n << "的位置\n" :
+		cout << c << "不在从下标" << pos << "位置开始往后的字符串中\n";
+
+	n = s.find(s1/*缺省参数默认0*/);//pos<s.size();否则会发生访问越界
+	//size_t find (string c, size_t pos =0)const //pos是缺省参数, 不传就是从0开始
+	//从字符串pos位置开始往后找字串c，找到字符串c
+	//返回c在被找字符串中的下标,找不到返回-1, 因为返回值是size_t所以是4294967295
+	n != (size_t)-1 ? cout << s1 << "在字符串s中下标为" << n << "的位置\n" :
+		cout << s1 << "不在从下标" << pos << "位置开始往后的字符串中\n";
+
+	n = s.find(c_s/*缺省参数默认0*/);//pos<s.size();否则会发生访问越界
+	//size_t find (char* c, size_t pos =0)const //pos是缺省参数, 不传就是从0开始
+	//从字符串pos位置开始往后找字串c，找到字符串c
+	//返回c在被找字符串中的下标,找不到返回-1, 因为返回值是size_t所以是4294967295
+	n != (size_t)-1 ? cout << c_s << "在字符串s中下标为" << n << "的位置\n" :
+		cout << c_s << "不在从下标" << pos << "位置开始往后的字符串中\n";
+
+	size_t npos = 10;
+	n = s.rfind(c, npos);//npos<s.size();否则会发生访问越界
+	//size_t rfind (char c, size_t pos =0)const//pos是缺省参数, 不传就是从0开始
+	//从字符串pos位置开始往前找字符c
+	//找到字符返回字符串中的下标,找不到返回-1, 因为返回值是size_t所以是4294967295
+	n != (size_t)-1 ? cout << c << "在字符串s中下标为" << n << "的位置\n" :
+		cout << c << "不在从下标" << npos << "位置开始往前的字符串中\n";
+	string s3 = s.substr(pos, npos);//npos<s.size(), pos>=0, npos-pos>=0;
+	//pos为缺省参数
 	//string substr(size_t pos = 0, size_t n= npos)const
 	//在str中从pos位置开始，截取n个字符，然后将其返回
 	cout << "s3:" << s3;
