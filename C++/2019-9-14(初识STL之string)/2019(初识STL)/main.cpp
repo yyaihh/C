@@ -120,6 +120,7 @@ void test3() {
 	//string substr(size_t pos = 0, size_t n= npos)const
 	//在str中从pos位置开始，截取n个字符，然后将其返回
 	cout << "s3:" << s3;
+	const char* s = "sxsx";
 	system("pause");
 	system("cls");
 }
