@@ -8,10 +8,18 @@ void test1() {
 	string s2(4, 'a');	//string(size_t n, char c)
 	string s3(s1);		//string(const string& s)
 	string s4(s1, 3);	//string(const string& s, size_t n)
+	string s5(s1, 1, 5);
+	string s6("abcdefe", 3);
+	string s7("scscssr", 2, 6);
+	string s8(s1.begin(), s1.end());
 	cout << "s1:" << s1 << endl
 		<< "s2:" << s2 << endl
 		<< "s3:" << s3 << endl
-		<< "s4:" << s4 << endl;
+		<< "s4:" << s4 << endl
+		<< "s5:" << s5 << endl
+		<< "s6:" << s6 << endl
+		<< "s7:" << s7 << endl
+		<< "s8:" << s8 << endl;
 	cout << "sting类的容量操作\n";
 	cout << "s1有效长度是:" << s1.size() << endl;
 	//size_t size() const 返回字符串有效字符长度
@@ -110,9 +118,9 @@ void test3() {
 
 	size_t npos = 10;
 	n = s.rfind(c, npos);//npos<s.size();否则会发生访问越界
-	//size_t rfind (char c, size_t pos =0)const//pos是缺省参数, 不传就是从0开始
+	//size_t rfind (char c, size_t pos =0)const//pos是缺省参数, 默认为0
 	//从字符串pos位置开始往前找字符c
-	//找到字符返回字符串中的下标,找不到返回-1, 因为返回值是size_t所以是4294967295
+	//找到字符返回字符串中的下标,找不到返回-1, 因为返回值类型size_t所以是4294967295
 	n != (size_t)-1 ? cout << c << "在字符串s中下标为" << n << "的位置\n" :
 		cout << c << "不在从下标" << npos << "位置开始往前的字符串中\n";
 	string s3 = s.substr(pos, npos);//npos<s.size(), pos>=0, npos-pos>=0;
@@ -120,7 +128,6 @@ void test3() {
 	//string substr(size_t pos = 0, size_t n= npos)const
 	//在str中从pos位置开始，截取n个字符，然后将其返回
 	cout << "s3:" << s3;
-	const char* s = "sxsx";
 	system("pause");
 	system("cls");
 }

@@ -145,10 +145,10 @@ void test5() {
 	String s2;
 	cout << "ÇëÊäÈës2\n";
 	getline(cin, s2);
-	cout << s2 << endl;
+	cout << "s2: " << s2 << endl;
 	cout << "ÇëÊäÈës2, #½áÊø\n";
 	getline(cin, s2, '#');
-	cout << s2 << endl;
+	cout << "s2: " << s2 << endl;
 	system("pause");
 	system("cls");
 }

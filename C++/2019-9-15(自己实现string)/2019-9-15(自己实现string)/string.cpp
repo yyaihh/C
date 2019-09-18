@@ -27,6 +27,9 @@ String::String(const char* t) :m_size(0)
 							, m_capacity(15)
 							, m_data(new char[m_capacity]) 
 {
+	if (t == nullptr) {
+		assert(false);
+	}
 	size_t size = strlen(t);
 	reserve(size);
 	m_size = size;
@@ -65,6 +68,9 @@ String& String::operator=(const String& t) {
 	return *this;
 }
 String& String::operator=(const char* s) {
+	if (s == nullptr) {
+		assert(false);
+	}
 	if (!strcmp(m_data, s)) {
 		return *this;
 	}
@@ -124,6 +130,9 @@ void String::pop_back(const char c) {
 	}
 }
 String& String::append(const char* s) {
+	if (s == nullptr) {
+		assert(false);
+	}
 	int size = strlen(s) + m_size;
 	reserve(size);
 	strcpy(m_data + m_size, s);
@@ -151,6 +160,9 @@ String& String::operator+=(const String&str) {
 	return *this;
 }
 String& String::operator+=(const char* s) {
+	if (s == nullptr) {
+		assert(false);
+	}
 	int size = strlen(s) + m_size;
 	reserve(size);
 	strcpy(m_data + m_size, s);
@@ -162,6 +174,9 @@ String& String::operator+=(const char c) {
 	return *this;
 }
 String operator+(const char* s, const String& t) {
+	if (s == nullptr) {
+		assert(false);
+	}
 	String res;
 	res = s;
 	int size = res.m_size + t.m_size;
@@ -172,6 +187,9 @@ String operator+(const char* s, const String& t) {
 }
 
 String String::operator+(const char* s)const {
+	if (s == nullptr) {
+		assert(false);
+	}
 	String res = *this;
 	int size = strlen(s) + m_size;
 	res.reserve(size);
@@ -203,6 +221,9 @@ size_t String::find(const char c, size_t pos)const {
 	}
 }
 size_t String::find(const char* c, size_t pos) const {
+	if (c == nullptr) {
+		assert(false);
+	}
 	if (pos < 0 || pos >= m_size) {
 		return -1;
 	}
@@ -241,6 +262,9 @@ size_t String::rfind(const char c, size_t pos)const{
 	}
 }		 
 size_t String::rfind(const char* s, size_t pos)const {
+	if (s == nullptr) {
+		assert(false);
+	}
 	char* tmp = nullptr;
 	strncpy(tmp, m_data, pos);
 	char* m = nullptr;
@@ -355,32 +379,53 @@ bool String::operator!=(const String& t)const {
 }
 
 bool String::operator<(const char* s)const {
+	if (s == nullptr) {
+		assert(false);
+	}
 	size_t n = strlen(s);
 	m_size < n ? n = m_size : n;
 	return strncmp(m_data, s, n) < 0;
 }
 bool String::operator>(const char* s)const {
+	if (s == nullptr) {
+		assert(false);
+	}
 	size_t n = strlen(s);
 	m_size < n ? n = m_size : n;
 	return strncmp(m_data, s, n) > 0;
 }
 bool String::operator<=(const char* s)const{
+	if (s == nullptr) {
+		assert(false);
+	}
 	return *this < s || *this == s;
 }
 bool String::operator>=(const char* s)const{
+	if (s == nullptr) {
+		assert(false);
+	}
 	return *this > s || *this == s;
 }
 bool String::operator==(const char* s)const{
+	if (s == nullptr) {
+		assert(false);
+	}
 	size_t L = strlen(s);
 	size_t n;
 	m_size < L ? n = m_size : n = L;
 	return m_size == strlen(s) && !strncmp(m_data, s, n);
 }
 bool String::operator!=(const char* s)const{
+	if (s == nullptr) {
+		assert(false);
+	}
 	return !(*this == s);
 }
 
 bool operator<(const char* t1, const String& t2) {
+	if (t1 == nullptr) {
+		assert(false);
+	}
 	/*size_t n;
 	size_t size = strlen(t1);
 	size < t2.m_size ? n = size : n = t2.m_size;
@@ -388,6 +433,9 @@ bool operator<(const char* t1, const String& t2) {
 	return t2 > t1;
 }
 bool operator>(const char* t1, const String& t2) {
+	if (t1 == nullptr) {
+		assert(false);
+	}
 	/*size_t n;
 	size_t size = strlen(t1);
 	size < t2.m_size ? n = size : n = t2.m_size;
@@ -395,6 +443,9 @@ bool operator>(const char* t1, const String& t2) {
 	return t2 < t1;
 }
 bool operator<=(const char* t1, const String& t2){
+	if (t1 == nullptr) {
+		assert(false);
+	}
 	return  t2 >= t1;
 	/*size_t n;
 	size_t size = strlen(t1);
@@ -402,6 +453,9 @@ bool operator<=(const char* t1, const String& t2){
 	return strncmp(t1, t2.m_data, n) < 0 || size == t2.m_size && !strncmp(t1, t2.m_data, n);*/
 }
 bool operator>=(const char* t1, const String& t2){
+	if (t1 == nullptr) {
+		assert(false);
+	}
 	return t2 <= t1;
 	/*size_t n;
 	size_t size = strlen(t1);
@@ -409,6 +463,9 @@ bool operator>=(const char* t1, const String& t2){
 	return strncmp(t1, t2.m_data, n) > 0 || size == t2.m_size && !strncmp(t1, t2.m_data, n);*/
 }
 bool operator==(const char* t1, const String& t2){
+	if (t1 == nullptr) {
+		assert(false);
+	}
 	/*size_t n;
 	size_t size = strlen(t1);
 	size < t2.m_size ? n = size : n = t2.m_size;
@@ -416,6 +473,9 @@ bool operator==(const char* t1, const String& t2){
 	return t2 == t1;
 }
 bool operator!=(const char* t1, const String& t2){
+	if (t1 == nullptr) {
+		assert(false);
+	}
 	//return !(t1 == t2);
 	return !(t2 == t1);
 }
