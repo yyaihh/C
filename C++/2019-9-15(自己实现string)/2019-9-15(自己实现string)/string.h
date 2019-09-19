@@ -1,15 +1,16 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
+#include<string>
 #include<cstring>
 #include<cassert>
 using namespace std;
-typedef char* Iterator;
 class String {
 	size_t m_capacity;
 	char* m_data;
 	size_t m_size;
 public:
+	typedef char* Iterator;
 	String();
 	String(const String&);
 	String(const char*);
@@ -17,6 +18,15 @@ public:
 	String(const String&, size_t);
 	String& operator=(const String&);
 	String& operator=(const char*);
+	template <class InputIterator>
+	String(InputIterator begin, InputIterator end) :m_size(0)
+		, m_capacity(15)
+		, m_data(new char[m_capacity])
+	{
+		reserve(end - begin);
+		m_size = end - begin;
+		strncpy(m_data, begin, end - begin);
+	}
 	~String();
 	Iterator begin()const;
 	Iterator end()const;
@@ -34,8 +44,16 @@ public:
 	void push_back(const char c);
 	void pop_back(const char c);
 	String& append(const char* s);
-	String& append(const char c, size_t n = 1);
+	String& append(size_t n, const char c);
 	String& append(const String& s);
+	template <class InputIterator>
+	String& append(InputIterator first, InputIterator last) {
+		int size = last - first + m_size;
+		reserve(size);
+		strncpy(m_data + m_size, first, last - first);
+		m_size = size;
+		return *this;
+	}
 	const char* c_str()const;
 	size_t find(const char c, size_t pos = 0)const;
 	size_t find(const char* c, size_t pos = 0)const;

@@ -1,8 +1,8 @@
 #include "string.h"
-Iterator String::begin()const {
+String::Iterator String::begin()const {
 	return m_data;
 }
-Iterator String::end() const{
+String::Iterator String::end() const{
 	return m_data + m_size;
 }
 String::String() :m_size(0),
@@ -18,6 +18,7 @@ String::String(const String& t):m_size(0)
 	if (this == &t) {
 		return;
 	}
+	memset(m_data, 0, m_capacity);
 	reserve(t.m_capacity);
 	m_size = t.m_size;
 	m_capacity = t.m_capacity;
@@ -37,19 +38,20 @@ String::String(const char* t) :m_size(0)
 }
 String::String(size_t n, char c) :m_size(0)
 								, m_capacity(15)
-								, m_data(new char[m_capacity]) {
+								, m_data(new char[m_capacity])
+{
 	reserve(n);
 	m_size = n;
 	memset(m_data, c, n);
 }
 String::String(const String& t, size_t n) :m_size(0)
 										, m_capacity(15)
-										, m_data(new char[m_capacity]) {
+										, m_data(new char[m_capacity])
+{
 	reserve(n);
 	m_size = n;
 	strncpy(m_data, t.m_data, n);
 }
-	 
 String::~String() {	
 	if (m_data) {
 		delete[]m_data;
@@ -139,7 +141,7 @@ String& String::append(const char* s) {
 	m_size = size;
 	return *this;
 }
-String& String::append(const char c, size_t n) {
+String& String::append(size_t n, const char c) {
 	while (n--) {
 		push_back(c);
 	}
