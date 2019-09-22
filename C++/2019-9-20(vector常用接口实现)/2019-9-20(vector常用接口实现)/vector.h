@@ -13,12 +13,26 @@ public:
 	Vector(size_t n);
 	Vector(const Vector<T>& x);
 	~Vector();
+	Vector<T>& operator=(const Vector<T>& x);
 	size_t size();
 	size_t capacity();
+	void swap(Vector<T>& x);
+	friend void swap(Vector<T>& a, Vector<T>& b) {
+		Vector<T> tmp = a;
+		a = b;
+		b = tmp;
+	}
 	bool empty();
 	void clear();
-	void resize(size_t n, const T& val);
-	void resize(size_t n);
+	void resize(size_t n, const T& val = T()) {
+			if (n >= m_capacity) {
+				size_t m = m_size;
+				m_size = n;
+				reserve(n);
+				for (size_t i = 0; i < m_size; memcpy(m_data + i, &val, sizeof(T)), ++i);
+			}
+		
+	}
 	void reserve(size_t n);
 	void push_back(const T& x);
 	void pop_back();
@@ -45,16 +59,16 @@ public:
 	}
 	Iterator insert(Iterator position, const T& val) {
 		reserve(++m_size);
-		for (Iterator i = end(); i > position; --i) {
+		for (Iterator i = end(); i >= position; --i) {
 			*i = *(i - 1);
 		}
 		*position = val;
 		return position;
 	}
-	Iterator insert(Iterator position, const size_t n, const T& val) {
+	Iterator insert(Iterator position, size_t n = 1, const T& val = T()) {
 		m_size += n;
 		reserve(m_size);
-		for (Iterator i = end(); i > position + n; --i) {
+		for (Iterator i = end(); i >= position + n; --i) {
 			*i = *(i - n);
 		}
 		for (Iterator i = position; i < position + n; ++i) {
@@ -72,11 +86,13 @@ public:
 		}
 		m_size += n;
 		reserve(m_size);
-		position = m_data + tmp;
-		Iterator mend = end();
-		for (Iterator i = position + n; i < mend; ++i) {
+		position = m_data + tmp;//迭代器的值可能会发生变化, 因为reserve可能会重新分配内存, 释放掉原来的内存
+		//迭代器可能失效
+		for (Iterator i = end(); i >= position + n; --i) {
 			*i = *(i - n);
 		}
+		//memcpy(m_data + tmp, first, n * sizeof(T));
+		//可能会出现深拷贝
 		for (Iterator i = position; i < position + n; ++i, ++first) {
 			*i = *first;
 		}
@@ -84,7 +100,7 @@ public:
 	}
 	Iterator insert(Iterator position, T&& val) {
 		reserve(++m_size);
-		for (Iterator i = end(); i > position; --i) {
+		for (Iterator i = end(); i >= position; --i) {
 			*i = *(i - 1);
 		}
 		*position = val;
@@ -143,28 +159,24 @@ Vector<T>::~Vector() {
 	m_capacity = m_size = 0;
 }
 template <class T>
+void Vector<T>::swap(Vector<T>& x) {
+	Vector<T> tmp = *this;
+	*this = x;
+	x = tmp;
+}
+template <class T>
+Vector<T>& Vector<T>::operator=(const Vector<T>& x) {
+	m_size = x.m_size;
+	m_capacity = x.m_capacity;
+	m_data = new T[x.m_capacity];
+	memcpy(m_data, x.m_data, m_capacity * sizeof(T));
+	return *this;
+}
+template <class T>
 void Vector<T>::push_back(const T& x) {
 	++m_size;
 	reserve(m_size);
 	memcpy(m_data + m_size - 1, &x, sizeof(T));
-}
-template <class T>
-void Vector<T>::resize(size_t n, const T& val) {
-	if (n >= m_capacity) {
-		size_t m = m_size;
-		m_size = n;
-		reserve(n);
-		for (size_t i = 0; i < m_size; memcpy(m_data + i, &val, sizeof(T)), ++i);
-	}
-}
-template <class T>
-void Vector<T>::resize(size_t n) {
-	if (n >= m_capacity) {
-		size_t m = m_size;
-		m_size = n;
-		reserve(n);
-		memset(m_data + m_size, 0, (m_capacity - m_size) * sizeof(T));
-	}
 }
 template <class T>
 void Vector<T>::reserve(size_t n) {
@@ -203,3 +215,12 @@ void Vector<T>::pop_back() {
 		--m_size;
 	}
 }
+namespace FIND {
+	template <class InputIterator>
+	InputIterator* find(InputIterator a, InputIterator b) {
+		InputIterator tmp = a;
+		a = b;
+		b = tmp;
+	}
+}
+
