@@ -10,7 +10,7 @@ void main() {
 		printf("输入有误，请重新输入\n");
 		scanf("%d", &m);
 	} 
-	int* Arr = (int*)malloc(m * sizeof(int));
+	int* Arr = (int*)calloc(m, sizeof(int));
 	printf("行数为%d的杨辉三角形为\n",m);
 	for (int i = 0; i < m; ++i) {  
 		 p = 0;
