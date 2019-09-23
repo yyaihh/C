@@ -177,7 +177,7 @@ int HoareWay(int* src, int start, int end) {
 void dealQuickSort(int* src, int start, int end) {
 	int mid;
 	if (start + 8 < end) {//当数组长度大于8时,快排
-		mid = doublePointerWay2(src, start, end);
+		mid = HoareWay(src, start, end);
 		dealQuickSort(src, start, mid - 1);
 		dealQuickSort(src, mid + 1, end);
 	}
