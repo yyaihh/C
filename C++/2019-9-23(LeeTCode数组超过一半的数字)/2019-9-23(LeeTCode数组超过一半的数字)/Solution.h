@@ -1,5 +1,6 @@
 #pragma once
 #include<vector>
+#include <algorithm>
 #include<iostream>
 using namespace std;
 class Solution {
@@ -56,7 +57,7 @@ class Solution {
 	}
 public:
 	int MoreThanHalfNum_Solution(vector<int> numbers) {
-#if 1
+#if 0
 		int s = numbers.size() / 2;
 		QuickSort(&numbers[0], 2*s);
 		int tmp = numbers[s / 2];
@@ -81,12 +82,32 @@ public:
 		}
 		return 0;
 #else
-
-		auto m = numbers.end();
-		auto begin = numbers.begin();
-		for (auto i = begin; i + 1< m; ++i) { 
-			if()
+		int _size = numbers.size();
+		if (_size == 0) {
+			return 0;
 		}
+		if (_size == 1) {
+			return numbers[0];
+		}
+		int count1 = 1;
+		int count2 = 1;
+		bool flag = true;
+		int num;
+		auto m = numbers.end();
+		for (auto i = numbers.begin(); i + 1 < m; ++i) {
+			if (flag) {
+				*i^*(i + 1) ? flag = false : (++count2, num = *i);
+			}
+			else {
+				*i^*(i + 1) ? flag = true : ++count1;
+			}
+			flag && count1 > count2 ? (num = *i, count2 = count1, count1 = 1) : 0;
+		}
+		count1 = 0;
+		for (auto i : numbers) {
+			i == num ? ++count1 : count1;
+		}
+		return count1 > _size / 2 ? num : 0;
 #endif
 	}
 };
