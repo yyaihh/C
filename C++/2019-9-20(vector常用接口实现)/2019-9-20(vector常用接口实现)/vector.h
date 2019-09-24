@@ -43,18 +43,13 @@ public:
 		return m_data + m_size;
 	}
 	Iterator erase(Iterator position) {
-		for (Iterator i = position; i + 1 < m_data + m_size; ++i) {
-			*i = *(i + 1);
-		}
+		memcpy(position, position + 1, (end() - position - 1)*sizeof(T));//不需要深拷贝
 		--m_size;
 		return position;
 	}
 	Iterator erase(Iterator first, Iterator last) {
-		int m = last - first;
-		for (Iterator i = first; i + m < m_data + m_size; ++i) {
-			*i = *(i + m);
-		}
-		m_size -= m;
+		memcpy(first, last, (end() - last) * sizeof(T));//不需要深拷贝
+		m_size -= (last - first);
 		return first;
 	}
 	Iterator insert(Iterator position, const T& val) {
