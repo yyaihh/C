@@ -101,13 +101,17 @@ public:
 			else {
 				*i^*(i + 1) ? flag = true : ++count1;
 			}
-			flag && count1 > count2 ? (num = *i, count2 = count1, count1 = 1) : 0;
+			if (flag && count1 > count2) {
+				num = *i;
+				count2 = count1;
+				count1 = 1;
+			}
 		}
 		count1 = 0;
 		for (auto i : numbers) {
-			i == num ? ++count1 : count1;
+			i ^ num ? 0 : ++count1;
 		}
-		return count1 > _size / 2 ? num : 0;
+		return (count1 > _size / 2) ? num : 0;
 #endif
 	}
 };
