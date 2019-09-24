@@ -18,7 +18,11 @@ int main() {
 	for (int i = 0; i < 10; ++i) {
 		arr.push_back(i + 1); 
 	}
-	//vector<int>::iterator i = arr.erase(arr.begin() + 2, arr.begin() + 4);
+	for (auto i : arr) {
+		cout << i << ' ';
+	}
+	cout << endl;
+	vector<int>::iterator i = arr.erase(arr.begin() + 2, arr.begin() + 4);
 	//vector<int>::iterator i = arr.insert(arr.begin() + 2, arr1.begin(), arr1.end());
 	//vector<int>::iterator j = arr.insert(arr.begin() + 2, 3, 10);
 	//cout << *i << endl;
