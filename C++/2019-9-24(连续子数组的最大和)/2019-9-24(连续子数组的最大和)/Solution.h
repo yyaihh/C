@@ -26,18 +26,16 @@ class Solution {
 		}
 	}
 public:
-#if 1
-	int FindGreatestSumOfSubArray(vector<int>& arr) {
+	int FindGreatestSumOfSubArray_1(vector<int>& arr) {
 		int sum = arr[0];
 		dealFindGreatestSumOfSubArray(arr.begin(), arr.begin() + 1, arr.end(), sum);
 		return sum;
 	}
-#else
 	inline int GetMax(int a, int b) {
 		return a > b ? a : b;
 	}
-	int FindGreatestSumOfSubArray(vector<int>& arr) {
-#if 0
+	int FindGreatestSumOfSubArray_2(vector<int>& arr) {
+#if 1
 		int Sum = arr[0];   //临时最大值
 		int MAX = arr[0];   //比较之后的最大值
 		int _size = arr.size();
@@ -51,10 +49,10 @@ public:
 		int sum = arr[0];
 		int _size = arr.size();
 		for (int i = 1; i < _size; i++) {
-			if (sum < 0) { 
-				sum = arr[i]; 
+			if (sum < 0) {
+				sum = arr[i];
 			}
-			else{
+			else {
 				sum += arr[i];
 			}
 			if (sum > MAX) MAX = sum;
@@ -62,6 +60,5 @@ public:
 		return MAX;
 #endif
 	}
-#endif
 };
 
