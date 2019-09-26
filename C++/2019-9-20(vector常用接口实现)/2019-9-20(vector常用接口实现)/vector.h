@@ -101,21 +101,6 @@ public:
 		*position = val;
 		return position;
 	}
-	//Iterator insert(Iterator position, initializer_list<T> il) {
-	//	int n = il.end() - il.begin();
-	//	if (n <= 0) {
-	//		return position;
-	//	}
-	//	m_size += n;
-	//	reserve(m_size);
-	//	for (Iterator i = end(); i > position + n; --i) {
-	//		*i = *(i - n);
-	//	}
-	//	for (Iterator i = position, j = il.begin(); i < position + n; ++i, ++j) {
-	//		*i = *j;
-	//	}
-	//	return position;
-	//}
 	T& operator[](const size_t n);
 	T& operator[](const size_t n) const;
 };
@@ -210,12 +195,3 @@ void Vector<T>::pop_back() {
 		--m_size;
 	}
 }
-namespace FIND {
-	template <class InputIterator>
-	InputIterator* find(InputIterator a, InputIterator b) {
-		InputIterator tmp = a;
-		a = b;
-		b = tmp;
-	}
-}
-

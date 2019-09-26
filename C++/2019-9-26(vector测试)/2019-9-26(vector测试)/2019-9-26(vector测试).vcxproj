@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{47273253-F7AF-4839-857C-1D07A4320653}</ProjectGuid>
-    <RootNamespace>My2019920STL容器之vector</RootNamespace>
+    <ProjectGuid>{1E02C911-ADE9-405C-BEBB-3FADDE0951C3}</ProjectGuid>
+    <RootNamespace>My2019926vector测试</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
