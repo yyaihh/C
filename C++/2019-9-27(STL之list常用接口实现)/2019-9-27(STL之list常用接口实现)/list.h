@@ -12,15 +12,15 @@ namespace myNode {
 }
 
 
-template<class T,class Ref, class Ptr>
+template<class T>
 class ListIterator {
 	typedef myNode::ListNode<T>* PNode;
-	typedef ListIterator<T, Ref, Ptr> Iterator;//类名太长
+	typedef ListIterator<T> Iterator;//类名太长,起个别名
 public:
 	//
 	PNode m_pnode;
 	//
-	ListIterator(PNode p = nullptr) :m_pnode(p) {}
+	ListIterator(const PNode p = nullptr) :m_pnode(p) {}
 	ListIterator(const Iterator& s) :m_pnode(s.m_pnode) {}
 	T& operator*() {
 		return m_pnode->m_data;
@@ -46,19 +46,19 @@ public:
 		m_pnode = m_pnode->m_prev;
 		return tmp;
 	}
-	bool operator==(Iterator& x) {
-		return m_pnode->m_data == x.m_pnode->m_data;
+	bool operator==(const Iterator& x)const{
+		return m_pnode == x.m_pnode;
 	}
-	bool operator!=(Iterator& x) {
-		return m_pnode->m_data != x.m_pnode->m_data;
+	bool operator!=(const Iterator& x)const{
+		return m_pnode != x.m_pnode;
 	}
 };
 
 
-template<class T, class Ref, class Ptr, class Iterator>
+template<class T, class Iterator>
 class ListReverseIterator {
 	typedef myNode::ListNode<T>* PNode;
-	typedef ListReverseIterator<T, Ref, Ptr, Iterator> ReverseIterator;
+	typedef ListReverseIterator<T,Iterator> ReverseIterator;
 public:
 	//
 	PNode m_pnode;
@@ -90,10 +90,10 @@ public:
 		return tmp;
 	}
 	bool operator==(ReverseIterator& x) {
-		return m_pnode->m_data == x.m_pnode->m_data;
+		return m_pnode == x.m_pnod;
 	}
 	bool operator!=(ReverseIterator& x) {
-		return m_pnode->m_data != x.m_pnode->m_data;
+		return m_pnode != x.m_pnode;
 	}
 };
 
@@ -101,54 +101,38 @@ public:
 template<class T>
 class List {
 	typedef myNode::ListNode<T> Node;
-	typedef ListIterator<T, T&, T*> Iterator;
-	typedef ListIterator<T, const T&, const T*> const_Iterator;
-	typedef ListReverseIterator<T, T&, T*, Iterator> ReverseIterator;
-	typedef ListReverseIterator<T, const T&, const T*, const_Iterator> constReverseIterator;
+	typedef ListIterator<T> Iterator;
+	typedef ListIterator<T> const_Iterator;
+	typedef ListReverseIterator<T, Iterator> ReverseIterator;
+	typedef ListReverseIterator<T, const_Iterator> constReverseIterator;
 	Node* m_phead;
-	inline void Init(const T& val = T()) {
+	inline void createhead(const T& val = T()) {
 		m_phead = new Node;
 		m_phead->m_data = val;
 		m_phead->m_prev = m_phead;
 		m_phead->m_next = m_phead;
+		m_size = 0;
 	}
 	size_t m_size;
 public:
-	List() :m_size(0){
-		Init();
+	List(){
+		createhead();
 	}
 	List(size_t n, const T& val = T()) {
-		Init();
-		m_size = n;
-		Node* newnode = nullptr;
-		Node* tmp = m_phead;
-		for (size_t i = 0; i < n; i++) {
-			newnode = new Node;
-			newnode->m_data = val;
-			newnode->m_prev = tmp;
-			newnode->m_next = m_phead;
-			tmp->m_next = newnode;
-			tmp = newnode;
-		}
+		createhead();
+		insert(m_phead, n, val);
 	}
 	List(List<T>& x) {
-		Init();
-		m_size = x.size();
-		Node* newnode = nullptr;
-		Node* tmp = m_phead;
-		for (Node* val = x.m_phead->m_next; val != x.m_phead; val = val->m_next) { 
-			newnode = new Node;
-			newnode->m_data = val->m_data;
-			newnode->m_prev = tmp;
-			newnode->m_next = m_phead;
-			m_phead->m_prev=newnode;
-			tmp->m_next = newnode;
-			tmp = newnode;
-		}
+		createhead();
+		insert(m_phead, x.begin(), x.end());
 	}
-	/*List() {
+	List(Iterator first, Iterator last) {
+		createhead();
+		insert(m_phead, first, last);
+	}
+	//List(Iterator first, Iterator last) {
 
-	}*/
+	//}
 	~List() {
 		clear();
 		if (m_phead) {
@@ -185,6 +169,25 @@ public:
 		}
 		m_size = 0;
 	}
+	Iterator insert(Iterator pos, const T& val) {
+		Iterator Pos = pos.m_pnode->m_prev;
+		dealinsert(pos, val);
+		return Pos;
+	}
+	Iterator insert(Iterator pos, size_t n, const T& val = T()) {
+		Iterator Pos = pos.m_pnode->m_prev;
+		while (n--) {
+			insert(pos, val);
+		}
+		return Pos;
+	}
+	Iterator insert(Iterator pos, Iterator first, Iterator last) {
+		Iterator Pos = pos.m_pnode->m_prev;
+		for (Iterator val = first; val != last; ++val) {
+			insert(pos, *val);
+		}
+		return Pos;
+	}
 	T& front() {
 		return m_phead->m_next->m_data;
 	}
@@ -206,5 +209,25 @@ public:
 		m_phead->m_prev = newnode;
 		++m_size;
 	}
+	void pop_back() {
+		Node* tmp = m_phead->m_prev;
+		m_phead->m_prev->m_prev->m_next = m_phead;
+		m_phead->m_prev = m_phead->m_prev->m_prev;
+		delete tmp;
+		--m_size;
+	}
 
+private:
+	inline void dealinsert(Iterator& pos, const T& val) {
+		Node* tmp = pos.m_pnode->m_prev;
+		Node* newnode = nullptr;
+		newnode = new Node;
+		newnode->m_data = val;
+		newnode->m_prev = tmp;
+		newnode->m_next = pos.m_pnode;
+		pos.m_pnode->m_prev = newnode;
+		tmp->m_next = newnode;
+		tmp = newnode;
+		++m_size;
+	}
 };
