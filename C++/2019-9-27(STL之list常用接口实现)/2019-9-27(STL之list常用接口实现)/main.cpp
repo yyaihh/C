@@ -34,6 +34,14 @@ int main() {
 	p.Print_vector(mylist_4);
 	p.Print_vector(mylist_5);
 	p.Print_vector(mylist_6);
+	mylist_6.pop_back();
+	p.Print_vector(mylist_6);
+	mylist_6.push_front(100);
+	p.Print_vector(mylist_6);
+	mylist_6.erase(mylist_6.begin(), ++++mylist_6.begin());
+	p.Print_vector(mylist_6);
+	mylist_1.clear();
+	cout << mylist_1.empty() << endl;
 	//mylist_2.clear();
 	/*cout << mylist_2.size() << endl;
 	mylist_3.push_back(10);

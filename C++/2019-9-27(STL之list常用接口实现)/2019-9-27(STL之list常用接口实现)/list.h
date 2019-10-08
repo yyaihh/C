@@ -130,9 +130,6 @@ public:
 		createhead();
 		insert(m_phead, first, last);
 	}
-	//List(Iterator first, Iterator last) {
-
-	//}
 	~List() {
 		clear();
 		if (m_phead) {
@@ -159,7 +156,7 @@ public:
 		return m_size;
 	}
 	void clear() {
-		Node* tmp;
+		/*Node* tmp;
 		for (Node* i = m_phead->m_next; i != m_phead; i = tmp) {
 			tmp = i->m_next;
 			tmp->m_prev = i->m_prev;
@@ -167,7 +164,8 @@ public:
 			i->m_next = i->m_prev = nullptr;
 			delete i;
 		}
-		m_size = 0;
+		m_size = 0;*/
+		erase(begin(), end());
 	}
 	Iterator insert(Iterator pos, const T& val) {
 		Iterator Pos = pos.m_pnode->m_prev;
@@ -201,22 +199,65 @@ public:
 		return m_phead->m_prev->m_data;
 	}
 	void push_back(const T& val) {
-		Node* newnode = new Node;
+		/*Node* newnode = new Node;
 		newnode->m_data = val;
 		newnode->m_prev = m_phead->m_prev;
 		newnode->m_next = m_phead;
 		m_phead->m_prev->m_next = newnode;
 		m_phead->m_prev = newnode;
-		++m_size;
+		++m_size;*/
+		dealinsert(--begin(), val);
 	}
 	void pop_back() {
-		Node* tmp = m_phead->m_prev;
+		/*Node* tmp = m_phead->m_prev;
 		m_phead->m_prev->m_prev->m_next = m_phead;
 		m_phead->m_prev = m_phead->m_prev->m_prev;
 		delete tmp;
-		--m_size;
+		--m_size;*/
+		erase(--end());
 	}
-
+	void push_front(const T& val) {
+		/*Node* newnode = new Node;
+		newnode->m_data = val;
+		newnode->m_prev = m_phead;
+		newnode->m_next = m_phead->m_next;
+		m_phead->m_next->m_prev = newnode;
+		m_phead->m_next = newnode;
+		++m_size;*/
+		dealinsert(++end(), val);
+	}
+	void pop_front() {
+		/*Node* tmp = m_phead->m_next;
+		m_phead->m_next = tmp->m_next;
+		tmp->m_next->m_prev = m_phead;
+		delete tmp;
+		--m_size;*/
+		erase(begin());
+	}
+	Iterator erase(Iterator position) {
+		Node* tmp = position.m_pnode;
+		++position;
+		tmp->m_prev->m_next = tmp->m_next;
+		tmp->m_next->m_prev = tmp->m_prev;
+		delete tmp;
+		--m_size;
+		return position;
+	}
+	Iterator erase(Iterator first, Iterator last) {
+		/*Node* tmp;
+		for (Node* i = first.m_pnode; i != last.m_pnode; i = tmp) {
+			tmp = i->m_next;
+			tmp->m_prev = i->m_prev;
+			i->m_prev->m_next = tmp;
+			i->m_next = i->m_prev = nullptr;
+			delete i;
+			--m_size;
+		}*/
+		for (; first != last;) {
+			first = erase(first);
+		}
+		return ++last;
+	}
 private:
 	inline void dealinsert(Iterator& pos, const T& val) {
 		Node* tmp = pos.m_pnode->m_prev;
