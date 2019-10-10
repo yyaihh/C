@@ -1,0 +1,75 @@
+#include<iostream>
+#include<vector>
+#include<stack>
+using namespace std;
+typedef struct TreeNode {
+	int val;
+	TreeNode *left;
+	TreeNode *right;
+	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+}TreeNode;
+class Solution {
+	vector<int>res;
+public:
+#if 0
+	vector<int> inorderTraversal(TreeNode* root) {
+		if (root) {
+			inorderTraversal(root->left);
+			res.push_back(root->val);
+			inorderTraversal(root->right);
+		}
+		return res;
+	}
+#else 
+	#if 0
+	vector<int> inorderTraversal(TreeNode* root) {
+		stack<TreeNode*> s;
+		do {
+			if (s.size()) {
+				root = s.top();
+				s.pop();
+			}
+			res.push_back(root->val);
+			if (root->right) s.push(root->right);
+			if (root->left) s.push(root->left);
+		} while (s.size());
+		return res;
+	}
+	#else
+	vector<int> inorderTraversal(TreeNode* root) {
+		stack<TreeNode*> s;
+		do{
+			if (s.size()) {
+				root = s.top();
+				s.pop();
+			}
+			while(root) {
+				res.push_back(root->val);
+				if (root->right) s.push(root->right);
+				root = root->left;
+			}
+		} while (s.size());
+		return res;
+	}
+	#endif
+
+#endif
+};
+
+int main() {
+	TreeNode root(1);
+	TreeNode a(2);
+	TreeNode b(3);
+	TreeNode c(4);
+	TreeNode d(5);
+	root.left = &a;
+	root.right = &b;
+	a.right = &c;
+	b.left = &d;
+	Solution p;
+	for (auto i : p.inorderTraversal(&root)) {
+		cout << i << endl;
+	}
+	system("pause");
+	return 0;
+}
