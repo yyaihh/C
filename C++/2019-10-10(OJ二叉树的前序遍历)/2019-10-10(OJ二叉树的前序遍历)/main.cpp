@@ -12,17 +12,17 @@ class Solution {
 	vector<int>res;
 public:
 #if 0
-	vector<int> inorderTraversal(TreeNode* root) {
+	vector<int> preorderTraversal(TreeNode* root) {
 		if (root) {
-			inorderTraversal(root->left);
+			preorderTraversal(root->left);
 			res.push_back(root->val);
-			inorderTraversal(root->right);
+			preorderTraversal(root->right);
 		}
 		return res;
 	}
 #else 
 	#if 0
-	vector<int> inorderTraversal(TreeNode* root) {
+	vector<int> preorderTraversal(TreeNode* root) {
 		stack<TreeNode*> s;
 		do {
 			if (s.size()) {
@@ -36,7 +36,7 @@ public:
 		return res;
 	}
 	#else
-	vector<int> inorderTraversal(TreeNode* root) {
+	vector<int> preorderTraversal(TreeNode* root) {
 		stack<TreeNode*> s;
 		do{
 			if (s.size()) {
@@ -67,7 +67,7 @@ int main() {
 	a.right = &c;
 	b.left = &d;
 	Solution p;
-	for (auto i : p.inorderTraversal(&root)) {
+	for (auto i : p.preorderTraversal(&root)) {
 		cout << i << endl;
 	}
 	system("pause");
