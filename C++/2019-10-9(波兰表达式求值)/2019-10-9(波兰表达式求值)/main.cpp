@@ -12,20 +12,22 @@ using namespace std;
 //→(ab + c * )(ab + e / ) -
 //→ab + c * ab + e / -
 class Solution {
-	stack<char> s;
-	stack<int> q;
+	stack<char> ch;
+	stack<int> num;
 public:
 	int evalRPN(vector<string>& tokens) {
-		for (auto i = tokens.rbegin(); i != tokens.rend(); ++i) {
-			if ((*i)[0] < '0' || (*i)[0] > '9') {
-				s.push((*i)[0]);
+		//二叉树后序变中序的过程
+		//可以直接用vector做, 找到符运算符, 前两个就是需要计算的值, 然后将这三个位置换成计算的值
+		for (auto i : tokens) { 
+			if (i[0] >= '0' && i[0] <= '9' || i.size() > 1) { 
+				num.push(atoi(i.c_str()));
 			}
 			else {
-				q.push(atoi((*i).c_str()));
+				ch.push(i[0]);
 			}
 		}
-		int num = q.top();
-		q.pop();
+	
+
 		while (q.size()) {
 			if (s.top() == '+') {
 				num += q.top();
