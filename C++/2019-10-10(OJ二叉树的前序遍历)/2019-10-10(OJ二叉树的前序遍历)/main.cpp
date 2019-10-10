@@ -38,6 +38,7 @@ public:
 	#else
 	vector<int> preorderTraversal(TreeNode* root) {
 		stack<TreeNode*> s;
+		//右孩子入栈
 		do{
 			if (s.size()) {
 				root = s.top();
@@ -45,7 +46,7 @@ public:
 			}
 			while(root) {
 				res.push_back(root->val);
-				if (root->right) s.push(root->right);
+				if (root->right) s.push(root->right);//有右, 右孩子入栈
 				root = root->left;
 			}
 		} while (s.size());
