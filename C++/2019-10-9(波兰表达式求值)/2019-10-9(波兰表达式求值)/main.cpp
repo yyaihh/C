@@ -12,39 +12,38 @@ using namespace std;
 //→(ab + c * )(ab + e / ) -
 //→ab + c * ab + e / -
 class Solution {
-	stack<char> ch;
 	stack<int> num;
 public:
 	int evalRPN(vector<string>& tokens) {
 		//二叉树后序变中序的过程
 		//可以直接用vector做, 找到符运算符, 前两个就是需要计算的值, 然后将这三个位置换成计算的值
-		for (auto i : tokens) { 
-			if (i[0] >= '0' && i[0] <= '9' || i.size() > 1) { 
-				num.push(atoi(i.c_str()));
+		int leftnum;
+		int rightnum;
+		for (auto str : tokens) {
+			if (str.size() > 1 || str[0] >= '0'&&str[0] <= '9') {
+				num.push(atoi(str.c_str()));
 			}
 			else {
-				ch.push(i[0]);
+				rightnum = num.top();
+				num.pop();
+				leftnum = num.top();
+				switch (str[0]) {
+				case '+':
+					num.top() = leftnum + rightnum;
+					break;
+				case '-':
+					num.top() = leftnum - rightnum;
+					break;
+				case '*':
+					num.top() = leftnum * rightnum;
+					break;
+				case '/':
+					num.top() = leftnum / rightnum;
+					break;
+				}
 			}
 		}
-	
-
-		while (q.size()) {
-			if (s.top() == '+') {
-				num += q.top();
-			}
-			else if (s.top() == '-') {
-				num -= q.top();
-			}
-			else if (s.top() == '*') {
-				num *= q.top();
-			}
-			else  {
-				num /= q.top();
-			}
-			q.pop();
-			s.pop();
-		}
-		return num;
+		return num.top();
 	}
 };
 
