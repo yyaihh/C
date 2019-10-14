@@ -1,6 +1,4 @@
 #pragma once
-//#include<iostream>
-
 namespace myNode {
 	template<class T>
 	class ListNode {
@@ -10,7 +8,6 @@ namespace myNode {
 		ListNode* m_next;
 	};
 }
-
 
 template<class T>
 class ListIterator {
@@ -257,6 +254,12 @@ public:
 			first = erase(first);
 		}
 		return ++last;
+	}
+	void swap(List<T>& x) {
+		Node* tmp;
+		tmp = x.m_phead;
+		x.m_phead = m_phead;
+		m_phead = tmp;
 	}
 private:
 	inline void dealinsert(Iterator& pos, const T& val) {
