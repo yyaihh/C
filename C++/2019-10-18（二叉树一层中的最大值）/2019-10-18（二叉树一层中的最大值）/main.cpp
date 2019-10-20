@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<deque>
+#include<queue>
 using namespace std;
 typedef struct TreeNode {
 	int val;
@@ -10,26 +11,26 @@ typedef struct TreeNode {
 }TreeNode;
 class Solution {
 public:
-	/*vector<int> largestValues(TreeNode* root) {
-		deque<TreeNode*> tq;
+	vector<int> largestValues(TreeNode* root) {
+		queue<TreeNode*> tq;
 		vector<int> max;
 		TreeNode* cur;
-		if (root) tq.push_back(root);
+		if (root) tq.push(root);
 		int size, tmpmax;
 		while (!tq.empty()) {
 			size = tq.size();
-			for (tmpmax =tq.front()->val; size > 0; --size) {
+			for (tmpmax = tq.front()->val; size > 0; --size) {
 				cur = tq.front();
 				if (cur->val > tmpmax)tmpmax = cur->val;
-				if (cur->left)tq.push_back(cur->left);
-				if (cur->right)tq.push_back(cur->right);
-				tq.pop_front();
+				if (cur->left)tq.push(cur->left);
+				if (cur->right)tq.push(cur->right);
+				tq.pop();
 			}
 			max.push_back(tmpmax);
 		}
 		return max;
-	}*/
-	vector<int> largestValues(TreeNode* root) {
+	}
+	/*vector<int> largestValues(TreeNode* root) {
 		vector<TreeNode*> tq1, tq2;
 		vector<int> max;
 		TreeNode* cur;
@@ -48,7 +49,7 @@ public:
 			tq2.clear();
 		}
 		return max;
-	}
+	}*/
 };
 int main() {
 	TreeNode root(1);
@@ -61,7 +62,9 @@ int main() {
 	a.right = &c;
 	b.left = &d;
 	Solution p;
-	p.largestValues(&root);
+	for (auto i : p.largestValues(&root)) {
+		cout << i << endl;
+	}
 	system("pause");
 	return 0;
 }
