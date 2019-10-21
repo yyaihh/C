@@ -21,18 +21,18 @@ public:
 		return res;
 	}
 #else 
-	#if 0
+	#if 1
 	vector<int> preorderTraversal(TreeNode* root) {
 		stack<TreeNode*> s;
 		do {
-			if (s.size()) {
+			if (!s.empty()) {
 				root = s.top();
 				s.pop();
 			}
 			res.push_back(root->val);
 			if (root->right) s.push(root->right);
 			if (root->left) s.push(root->left);
-		} while (s.size());
+		} while (!s.empty());
 		return res;
 	}
 	#else
@@ -40,7 +40,7 @@ public:
 		stack<TreeNode*> s;
 		//右孩子入栈
 		do{
-			if (s.size()) {
+			if (!s.empty()) {
 				root = s.top();
 				s.pop();
 			}
@@ -49,7 +49,7 @@ public:
 				if (root->right) s.push(root->right);//有右, 右孩子入栈
 				root = root->left;
 			}
-		} while (s.size());
+		} while (!s.empty());
 		return res;
 	}
 	#endif
