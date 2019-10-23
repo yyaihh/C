@@ -72,14 +72,18 @@ typedef struct TreeNode {
 class Solution {
 	TreeNode* a;
 	TreeNode* b;
-	TreeNode* l;
-	TreeNode* r;
+	TreeNode* left;
+	TreeNode* right;
 	TreeNode* fun(TreeNode* root) {
+		TreeNode* l;
+		TreeNode* r;
 		if (a == root || root == b || root== nullptr) {
 			return root;
 		}
 		l = fun(root->left);
+		l ? left = l : left;
 		r = fun(root->right);
+		r ? right = r : right;
 		if (l != nullptr && r != nullptr) {
 			return root;
 		}
@@ -98,6 +102,7 @@ public:
 		}
 		a = p;
 		b = q;
+		left = right = nullptr;
 		return fun(root);
 	}
 };
@@ -113,7 +118,8 @@ int main() {
 	b.left = &d;
 	Solution p;
 	//cout << p.lowestCommonAncestor(&root, &c, &d)->val << endl;
-	cout<<p.lowestCommonAncestor(&root, &c, &d)->val<<endl;
+	TreeNode* cur = p.lowestCommonAncestor(&root, &a, &a);
+	cur ? cout << cur->val << endl : cout << "ц╩сп\n";
 	system("pause");
 	return 0;
 }
