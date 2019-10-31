@@ -72,8 +72,6 @@ typedef struct TreeNode {
 class Solution {
 	TreeNode* a;
 	TreeNode* b;
-	TreeNode* left;
-	TreeNode* right;
 	TreeNode* fun(TreeNode* root) {
 		TreeNode* l;
 		TreeNode* r;
@@ -81,9 +79,7 @@ class Solution {
 			return root;
 		}
 		l = fun(root->left);
-		l ? left = l : left;
 		r = fun(root->right);
-		r ? right = r : right;
 		if (l != nullptr && r != nullptr) {
 			return root;
 		}
@@ -102,7 +98,6 @@ public:
 		}
 		a = p;
 		b = q;
-		left = right = nullptr;
 		return fun(root);
 	}
 };
