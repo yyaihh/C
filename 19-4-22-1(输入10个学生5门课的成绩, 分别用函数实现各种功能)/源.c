@@ -13,13 +13,13 @@ double stu_aver(int i, int a[M][N]) {//计算学生平均成绩
 }
 void score_aver(int a[M][N]) {//科目平均成绩
 	double sum;
+	printf("课程\t\t课程平均分\n");
 	for (int i = 0; i < N; ++i) {
 		sum = 0;
-		printf("第%d门课的平均分为:\n", i + 1);
 		for (int j = 0; j < M; ++j) {
 			sum += a[j][i];
 		}
-		printf("%f\n", sum / M);
+		printf("NO.%d\t\t%.2f\n", i + 1, sum / M);
 	}
 }
 void top_score(int a[M][N]) {//最高分
@@ -76,8 +76,9 @@ void main() {
 		}
 		printf("\n");
 	}
+	printf("student\t\t平均成绩\n");
 	for (int i = 0; i < M; ++i) {
-		printf("第%d位学生的平均成绩为:\n%f\n", i + 1, stu_aver(i, stu_score));
+		printf("NO.%d\t\t%.2f\n", i + 1, stu_aver(i, stu_score));
 	}
 	score_aver(stu_score);
 	top_score(stu_score);
