@@ -3,14 +3,14 @@ local json = require "cjson.safe"
 
 script_info = {
 	["title"] = "AGE动漫",
-	["description"] = "https://donghua.agefans.com/",
-	["version"] = "0.0.5",
+	["description"] = "https://www.agefans.tv/",
+	["version"] = "0.0.6",
 }
 
 header = {"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36"}
 
 function onInitAnime()
-	local data = get("https://donghua.agefans.com/")
+	local data = get("https://www.agefans.tv/")
 	_, _, data = string.find(data, "var new_anime_list = (.-);")
 	if data == nil or #data == 0 then
 		return
@@ -32,7 +32,7 @@ function onInitAnime()
 
 	for _, item in ipairs(j) do 
 		local anime_item = {}
-		anime_item["url"] = "https://donghua.agefans.com/detail/" .. math.tointeger(item["id"])
+		anime_item["url"] = "https://www.agefans.tv/detail/" .. math.tointeger(item["id"])
 		anime_item["name"] = item["name"]
 		--anime_item["icon_size"] = "63,88"
 		--anime_item["image"] = "https://donghua.agefans.com/poster/" .. math.tointeger(item["id"]) .. ".jpg"
@@ -52,7 +52,7 @@ function onItemClick(item)
 	local data = get(item.url)
 	local _, _, arg = string.find(data, "<a class=\"res_links_a\" href=\"(.-)\"")
 	if arg then
-		arg = getEffectiveUrl("https://donghua.agefans.com" .. arg)
+		arg = getEffectiveUrl("https://www.agefans.tv" .. arg)
 		local _, _, pwd = string.find(data, "<span class=\"res_links_pswd\".-(%w%w%w%w).-</span>")
 		if pwd then
 			arg = arg .. " " .. pwd
