@@ -32,9 +32,8 @@ arr* creat() {//创建链表
 }
 int fun(arr* head) {//报号为3的人退出(删除)
 	arr* p = head;
-	arr* temp;
-	int k = 1;
-	for (p = head; p->next != p; p = p->next) {
+	int k = 1, res;
+	for (arr* temp; p->next != p; p = p->next) {
 		printf("%d\t", p->num);
 		if (k == 2) {
 			temp = p->next;
@@ -45,8 +44,11 @@ int fun(arr* head) {//报号为3的人退出(删除)
 		}
 		k += 1;
 	}
-	return p->num;
+	res = p->num;
+	free(p);
+	return res;
 }
+
 void main() {
 	arr* p;
 	printf("初始号数为\n");
